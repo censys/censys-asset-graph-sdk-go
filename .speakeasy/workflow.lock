@@ -1,0 +1,50 @@
+speakeasyVersion: 1.761.1
+sources:
+    asset-graph-source:
+        sourceNamespace: asset-graph-source
+        sourceRevisionDigest: sha256:c8fea802da410c10e9938fdd8d5bd0651b87c7a4bac7737fb27ffe5c68b6e034
+        sourceBlobDigest: sha256:d7c79a618ad1673eb99f12f83bdb0444feed06b6cfca5bf87b2de01dbf2ac97e
+        tags:
+            - latest
+            - 1.0.2
+    petstore-oas:
+        sourceNamespace: petstore-oas
+        sourceRevisionDigest: sha256:79b05b3c903377383b1ffff975c77201c984df00c5ebe24c3c0f20580776f8e1
+        sourceBlobDigest: sha256:0a88ef48bace41abce14841a48ce1fbe15c0cc00ca41940d9c774db73a27211f
+        tags:
+            - latest
+            - 1.0.0
+targets:
+    censys-asset-graph-sdk-go:
+        source: asset-graph-source
+        sourceNamespace: asset-graph-source
+        sourceRevisionDigest: sha256:c8fea802da410c10e9938fdd8d5bd0651b87c7a4bac7737fb27ffe5c68b6e034
+        sourceBlobDigest: sha256:d7c79a618ad1673eb99f12f83bdb0444feed06b6cfca5bf87b2de01dbf2ac97e
+        codeSamplesNamespace: asset-graph-source-go-code-samples
+        codeSamplesRevisionDigest: sha256:c71fcf7e461fb2844feeda2837a8d4b89c67021420a1a82be4fd5ad78be6309e
+    petstore:
+        source: petstore-oas
+        sourceNamespace: petstore-oas
+        sourceRevisionDigest: sha256:79b05b3c903377383b1ffff975c77201c984df00c5ebe24c3c0f20580776f8e1
+        sourceBlobDigest: sha256:0a88ef48bace41abce14841a48ce1fbe15c0cc00ca41940d9c774db73a27211f
+        codeSamplesNamespace: petstore-oas-go-code-samples
+        codeSamplesRevisionDigest: sha256:39d37ca0925f6645429ba604bb2e973b31eb313ca55d5cdd98cef42b24ee5db9
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        asset-graph-source:
+            inputs:
+                - location: ./openapi.yaml
+            registry:
+                location: registry.speakeasyapi.dev/censys/censys/asset-graph-source
+    targets:
+        censys-asset-graph-sdk-go:
+            target: go
+            source: asset-graph-source
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/censys/censys/asset-graph-source-go-code-samples
+                labelOverride:
+                    fixedValue: Go (SDK)
+                blocking: false

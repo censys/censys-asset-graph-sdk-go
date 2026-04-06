@@ -1,0 +1,12 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    asset-graph-source:
+        inputs:
+            - location: https://github.com/censys/censys-asset-graph-sdk-openapi/releases/latest/download/openapi.yaml
+        registry:
+            location: registry.speakeasyapi.dev/censys/censys/asset-graph-source
+targets:
+    censys-asset-graph-sdk-go:
+        target: go
+        source: asset-graph-source
