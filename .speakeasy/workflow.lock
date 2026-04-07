@@ -2,11 +2,11 @@ speakeasyVersion: 1.761.1
 sources:
     asset-graph-source:
         sourceNamespace: asset-graph-source
-        sourceRevisionDigest: sha256:c8fea802da410c10e9938fdd8d5bd0651b87c7a4bac7737fb27ffe5c68b6e034
-        sourceBlobDigest: sha256:d7c79a618ad1673eb99f12f83bdb0444feed06b6cfca5bf87b2de01dbf2ac97e
+        sourceRevisionDigest: sha256:3e4aac7bd614878902c086b5124a06a37f2dcd5ef8bd2ab112de5bed18b321d3
+        sourceBlobDigest: sha256:0a2999f88716131176dfe85ee64f2bfb9715067c5a293eedfd48bb5873f2c9ed
         tags:
             - latest
-            - 1.0.2
+            - 1.0.4
     petstore-oas:
         sourceNamespace: petstore-oas
         sourceRevisionDigest: sha256:79b05b3c903377383b1ffff975c77201c984df00c5ebe24c3c0f20580776f8e1
@@ -18,10 +18,10 @@ targets:
     censys-asset-graph-sdk-go:
         source: asset-graph-source
         sourceNamespace: asset-graph-source
-        sourceRevisionDigest: sha256:c8fea802da410c10e9938fdd8d5bd0651b87c7a4bac7737fb27ffe5c68b6e034
-        sourceBlobDigest: sha256:d7c79a618ad1673eb99f12f83bdb0444feed06b6cfca5bf87b2de01dbf2ac97e
+        sourceRevisionDigest: sha256:3e4aac7bd614878902c086b5124a06a37f2dcd5ef8bd2ab112de5bed18b321d3
+        sourceBlobDigest: sha256:0a2999f88716131176dfe85ee64f2bfb9715067c5a293eedfd48bb5873f2c9ed
         codeSamplesNamespace: asset-graph-source-go-code-samples
-        codeSamplesRevisionDigest: sha256:c71fcf7e461fb2844feeda2837a8d4b89c67021420a1a82be4fd5ad78be6309e
+        codeSamplesRevisionDigest: sha256:2ccd768f3ff11d21c39ca019c0f9391d0aa110bad90e21252c29da25aa122eb2
     petstore:
         source: petstore-oas
         sourceNamespace: petstore-oas
@@ -35,7 +35,7 @@ workflow:
     sources:
         asset-graph-source:
             inputs:
-                - location: ./openapi.yaml
+                - location: https://github.com/censys/censys-asset-graph-sdk-openapi/releases/latest/download/openapi.yaml
             registry:
                 location: registry.speakeasyapi.dev/censys/censys/asset-graph-source
     targets:

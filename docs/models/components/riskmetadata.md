@@ -1,0 +1,12 @@
+# RiskMetadata
+
+
+## Fields
+
+| Field                                                          | Type                                                           | Required                                                       | Description                                                    | Example                                                        |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `DollarSchema`                                                 | `*string`                                                      | :heavy_minus_sign:                                             | A URL to the JSON Schema for this object.                      | https://graph.data.censys.io/schemas/RiskMetadata.json         |
+| `AddedAt`                                                      | [time.Time](https://pkg.go.dev/time#Time)                      | :heavy_check_mark:                                             | Time data was ingested                                         |                                                                |
+| `Description`                                                  | `string`                                                       | :heavy_check_mark:                                             | Description of the risk                                        |                                                                |
+| `Name`                                                         | `string`                                                       | :heavy_check_mark:                                             | Name of the risk                                               |                                                                |
+| `References`                                                   | [][components.Reference](../../models/components/reference.md) | :heavy_check_mark:                                             | Reference information for data returned                        |                                                                |
