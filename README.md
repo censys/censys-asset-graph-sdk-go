@@ -1,4 +1,4 @@
-# censysassetgraphsdkgo
+# github.com/censys/censys-asset-graph-sdk-go
 
 [![Built by Speakeasy](https://img.shields.io/badge/Built_by-SPEAKEASY-374151?style=for-the-badge&labelColor=f3f4f6)](https://www.speakeasy.com/?utm_source=censysassetgraphsdkgo&utm_campaign=go)
 [![License: MIT](https://img.shields.io/badge/LICENSE_//_MIT-3b5bdb?style=for-the-badge&labelColor=eff6ff)](https://opensource.org/licenses/MIT)
