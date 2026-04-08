@@ -21,7 +21,7 @@ targets:
         sourceRevisionDigest: sha256:3e4aac7bd614878902c086b5124a06a37f2dcd5ef8bd2ab112de5bed18b321d3
         sourceBlobDigest: sha256:0a2999f88716131176dfe85ee64f2bfb9715067c5a293eedfd48bb5873f2c9ed
         codeSamplesNamespace: asset-graph-source-go-code-samples
-        codeSamplesRevisionDigest: sha256:2ccd768f3ff11d21c39ca019c0f9391d0aa110bad90e21252c29da25aa122eb2
+        codeSamplesRevisionDigest: sha256:4f45ddf899597fdd50efccb14d245c73a56f70257c7070e3bc25559501ff6176
     petstore:
         source: petstore-oas
         sourceNamespace: petstore-oas

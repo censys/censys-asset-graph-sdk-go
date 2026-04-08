@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.4
   speakeasyVersion: 1.761.1
   generationVersion: 2.879.6
-  releaseVersion: 0.1.2
-  configChecksum: a7af060f430c5846d719344784b9891c
+  releaseVersion: 0.1.4
+  configChecksum: 4d31fae12647629aad487cfad150689a
   repoURL: https://github.com/censys/censys-asset-graph-sdk-go.git
   installationURL: https://github.com/censys/censys-asset-graph-sdk-go
 persistentEdits:
@@ -4585,7 +4585,7 @@ trackedFiles:
     pristine_git_object: b00dae436f9eaa8d03f5246b373052e6f5da3563
   sdk.go:
     id: 8db9b9536b0a
-    last_write_checksum: sha1:54270804c5b61666a49dd1581c54ce93268859fa
+    last_write_checksum: sha1:0bc0112aa1e65d2071713535068b57ca2e63224d
     pristine_git_object: 3af36e9b8e56af57e6b701dbd746c30d308c2243
   seeds.go:
     id: 4cb79c731994

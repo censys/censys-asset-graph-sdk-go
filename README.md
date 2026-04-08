@@ -3,63 +3,9 @@
 [![Built by Speakeasy](https://img.shields.io/badge/Built_by-SPEAKEASY-374151?style=for-the-badge&labelColor=f3f4f6)](https://www.speakeasy.com/?utm_source=censysassetgraphsdkgo&utm_campaign=go)
 [![License: MIT](https://img.shields.io/badge/LICENSE_//_MIT-3b5bdb?style=for-the-badge&labelColor=eff6ff)](https://opensource.org/licenses/MIT)
 
+<!-- No Summary [summary] -->
 
-<!-- Start Summary [summary] -->
-## Summary
-
-Asset Graph API: # Asset Graph API
-
-The Asset Graph API provides comprehensive visibility into your Internet-facing assets. Use this API to build and manage attack surfaces by creating asset graphs, configuring seeds and exclusions, running discovery executions, and retrieving discovered assets and risk metadata.
-
-### Authentication
-
-All requests must include a valid Censys personal access token (PAT) in the `Authorization` header:
-
-```
-Authorization: Bearer <your-api-token>
-```
-
-An `X-Organization-ID` header must also be present on every request. This identifies the Censys organization that owns the resources being accessed.
-
-```
-X-Organization-ID: <your-organization-id>
-```
-
-### Core Concepts
-
-- **Asset Graph**: The parent resource representing an attack surface. Each asset graph contains seeds, excluded assets, and executions.
-- **Seeds**: Persistent starting points used to discover additional assets. Supported types include IP addresses, domains, CIDRs, ASNs, certificates, and web properties.
-- **Excluded Assets**: Assets explicitly excluded from the graph. Excluded assets will not appear in execution results and will not be used to discover additional assets.
-- **Executions**: A discovery process that uses the graph's configured seeds and excluded assets to generate a complete snapshot of the attack surface. Censys periodically runs executions in the background, or they can be triggered on-demand.
-- **Assets**: Internet-facing resources discovered during an execution, including hosts, domains, certificates, and web properties. Each asset includes discovery paths showing how it was found from your seeds.
-- **Risks**: Vulnerabilities, exposures, misconfigurations, and threats identified on discovered assets.
-
-### Getting Started
-
-1. **Create an asset graph** to represent your attack surface.
-2. **Add seeds** — the known assets that Censys will use as starting points for discovery.
-3. **Optionally add excluded assets** to omit specific assets from results.
-4. **Create an execution** to trigger the discovery process, or wait for Censys to run one automatically.
-5. **List assets** from a completed execution to view your discovered attack surface.
-6. **Look up risk metadata** for any risk IDs found on your assets.
-<!-- End Summary [summary] -->
-
-<!-- Start Table of Contents [toc] -->
-## Table of Contents
-<!-- $toc-max-depth=2 -->
-* [censysassetgraphsdkgo](#censysassetgraphsdkgo)
-  * [SDK Installation](#sdk-installation)
-  * [SDK Example Usage](#sdk-example-usage)
-  * [Available Resources and Operations](#available-resources-and-operations)
-  * [Retries](#retries)
-  * [Error Handling](#error-handling)
-  * [Server Selection](#server-selection)
-  * [Custom HTTP Client](#custom-http-client)
-* [Development](#development)
-  * [Maturity](#maturity)
-  * [Contributions](#contributions)
-
-<!-- End Table of Contents [toc] -->
+<!-- No Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
