@@ -29,7 +29,10 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := censysassetgraphsdkgo.New()
+    s := censysassetgraphsdkgo.New(
+        censysassetgraphsdkgo.WithXOrganizationID("<id>"),
+        censysassetgraphsdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    )
 
     res, err := s.Assets.ListAssets(ctx, operations.ListAssetsRequest{
         GraphID: "b5bc5310-a2a3-4f4b-8ba7-0eed4e23a166",
@@ -81,7 +84,10 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := censysassetgraphsdkgo.New()
+    s := censysassetgraphsdkgo.New(
+        censysassetgraphsdkgo.WithXOrganizationID("<id>"),
+        censysassetgraphsdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    )
 
     res, err := s.Assets.GetAsset(ctx, "f04de8ec-9e82-4cbd-a275-517e1de9a07f", "<id>", "<id>")
     if err != nil {
@@ -101,6 +107,7 @@ func main() {
 | `graphID`                                                | `string`                                                 | :heavy_check_mark:                                       | Asset graph ID                                           |
 | `executionID`                                            | `string`                                                 | :heavy_check_mark:                                       | Graph execution ID                                       |
 | `assetID`                                                | `string`                                                 | :heavy_check_mark:                                       | Hex-encoded asset identifier                             |
+| `xOrganizationID`                                        | `*string`                                                | :heavy_minus_sign:                                       | Censys organization ID                                   |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response

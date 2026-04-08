@@ -33,10 +33,15 @@ func newAssetGraphs(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hook
 
 // ListAssetGraphs - List asset graphs
 // List all asset graphs belonging to your Censys organization.
-func (s *AssetGraphs) ListAssetGraphs(ctx context.Context, pageToken *string, pageSize *int, opts ...operations.Option) (*operations.ListAssetGraphsResponse, error) {
+func (s *AssetGraphs) ListAssetGraphs(ctx context.Context, xOrganizationID *string, pageToken *string, pageSize *int, opts ...operations.Option) (*operations.ListAssetGraphsResponse, error) {
 	request := operations.ListAssetGraphsRequest{
-		PageToken: pageToken,
-		PageSize:  pageSize,
+		XOrganizationID: xOrganizationID,
+		PageToken:       pageToken,
+		PageSize:        pageSize,
+	}
+
+	globals := operations.ListAssetGraphsGlobals{
+		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
 	}
 
 	o := operations.Options{}
@@ -69,7 +74,7 @@ func (s *AssetGraphs) ListAssetGraphs(ctx context.Context, pageToken *string, pa
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-asset-graphs",
-		SecuritySource:   nil,
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -95,8 +100,14 @@ func (s *AssetGraphs) ListAssetGraphs(ctx context.Context, pageToken *string, pa
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, globals, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
 	}
 
 	for k, v := range o.SetHeaders {
@@ -264,7 +275,16 @@ func (s *AssetGraphs) ListAssetGraphs(ctx context.Context, pageToken *string, pa
 
 // CreateAssetGraph - Create an asset graph
 // Create a new asset graph. An asset graph provides comprehensive visibility into your Internet-facing assets. It is the parent resource for seeds, excluded assets, and executions.
-func (s *AssetGraphs) CreateAssetGraph(ctx context.Context, request components.CreateAssetGraphInputBody, opts ...operations.Option) (*operations.CreateAssetGraphResponse, error) {
+func (s *AssetGraphs) CreateAssetGraph(ctx context.Context, body components.CreateAssetGraphInputBody, xOrganizationID *string, opts ...operations.Option) (*operations.CreateAssetGraphResponse, error) {
+	request := operations.CreateAssetGraphRequest{
+		XOrganizationID: xOrganizationID,
+		Body:            body,
+	}
+
+	globals := operations.CreateAssetGraphGlobals{
+		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -295,9 +315,9 @@ func (s *AssetGraphs) CreateAssetGraph(ctx context.Context, request components.C
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-asset-graph",
-		SecuritySource:   nil,
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -326,6 +346,12 @@ func (s *AssetGraphs) CreateAssetGraph(ctx context.Context, request components.C
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
+	}
+
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
 	}
 
 	for k, v := range o.SetHeaders {
@@ -493,9 +519,14 @@ func (s *AssetGraphs) CreateAssetGraph(ctx context.Context, request components.C
 
 // DeleteAssetGraph - Delete an asset graph
 // Permanently delete an asset graph and all of its associated data, including seeds, excluded assets, and executions.
-func (s *AssetGraphs) DeleteAssetGraph(ctx context.Context, id string, opts ...operations.Option) (*operations.DeleteAssetGraphResponse, error) {
+func (s *AssetGraphs) DeleteAssetGraph(ctx context.Context, id string, xOrganizationID *string, opts ...operations.Option) (*operations.DeleteAssetGraphResponse, error) {
 	request := operations.DeleteAssetGraphRequest{
-		ID: id,
+		XOrganizationID: xOrganizationID,
+		ID:              id,
+	}
+
+	globals := operations.DeleteAssetGraphGlobals{
+		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
 	}
 
 	o := operations.Options{}
@@ -516,7 +547,7 @@ func (s *AssetGraphs) DeleteAssetGraph(ctx context.Context, id string, opts ...o
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{id}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -527,7 +558,7 @@ func (s *AssetGraphs) DeleteAssetGraph(ctx context.Context, id string, opts ...o
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "delete-asset-graph",
-		SecuritySource:   nil,
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -547,6 +578,12 @@ func (s *AssetGraphs) DeleteAssetGraph(ctx context.Context, id string, opts ...o
 	}
 	req.Header.Set("Accept", "application/problem+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
 
 	for k, v := range o.SetHeaders {
 		req.Header.Set(k, v)
@@ -694,9 +731,14 @@ func (s *AssetGraphs) DeleteAssetGraph(ctx context.Context, id string, opts ...o
 
 // GetAssetGraph - Get an asset graph
 // Retrieve an asset graph, including its active execution if one exists.
-func (s *AssetGraphs) GetAssetGraph(ctx context.Context, id string, opts ...operations.Option) (*operations.GetAssetGraphResponse, error) {
+func (s *AssetGraphs) GetAssetGraph(ctx context.Context, id string, xOrganizationID *string, opts ...operations.Option) (*operations.GetAssetGraphResponse, error) {
 	request := operations.GetAssetGraphRequest{
-		ID: id,
+		XOrganizationID: xOrganizationID,
+		ID:              id,
+	}
+
+	globals := operations.GetAssetGraphGlobals{
+		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
 	}
 
 	o := operations.Options{}
@@ -718,7 +760,7 @@ func (s *AssetGraphs) GetAssetGraph(ctx context.Context, id string, opts ...oper
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{id}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -729,7 +771,7 @@ func (s *AssetGraphs) GetAssetGraph(ctx context.Context, id string, opts ...oper
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-asset-graph",
-		SecuritySource:   nil,
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -754,6 +796,12 @@ func (s *AssetGraphs) GetAssetGraph(ctx context.Context, id string, opts ...oper
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
 
 	for k, v := range o.SetHeaders {
 		req.Header.Set(k, v)

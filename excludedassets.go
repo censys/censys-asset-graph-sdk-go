@@ -32,11 +32,16 @@ func newExcludedAssets(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *h
 
 // ListExcludedAssets - List excluded assets
 // List all excluded assets configured for an asset graph.
-func (s *ExcludedAssets) ListExcludedAssets(ctx context.Context, graphID string, pageToken *string, pageSize *int, opts ...operations.Option) (*operations.ListExcludedAssetsResponse, error) {
+func (s *ExcludedAssets) ListExcludedAssets(ctx context.Context, graphID string, xOrganizationID *string, pageToken *string, pageSize *int, opts ...operations.Option) (*operations.ListExcludedAssetsResponse, error) {
 	request := operations.ListExcludedAssetsRequest{
-		GraphID:   graphID,
-		PageToken: pageToken,
-		PageSize:  pageSize,
+		XOrganizationID: xOrganizationID,
+		GraphID:         graphID,
+		PageToken:       pageToken,
+		PageSize:        pageSize,
+	}
+
+	globals := operations.ListExcludedAssetsGlobals{
+		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
 	}
 
 	o := operations.Options{}
@@ -58,7 +63,7 @@ func (s *ExcludedAssets) ListExcludedAssets(ctx context.Context, graphID string,
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/excluded-assets", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/excluded-assets", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -69,7 +74,7 @@ func (s *ExcludedAssets) ListExcludedAssets(ctx context.Context, graphID string,
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-excluded-assets",
-		SecuritySource:   nil,
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -95,8 +100,14 @@ func (s *ExcludedAssets) ListExcludedAssets(ctx context.Context, graphID string,
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, globals, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
 	}
 
 	for k, v := range o.SetHeaders {
@@ -266,10 +277,15 @@ func (s *ExcludedAssets) ListExcludedAssets(ctx context.Context, graphID string,
 // Exclude an asset from an asset graph. Excluded assets will not appear in the graph and will not be used to discover additional assets.
 //
 // Modifications to excluded assets take effect during the next execution of the graph.
-func (s *ExcludedAssets) CreateExcludedAsset(ctx context.Context, graphID string, body components.AssetRefInput, opts ...operations.Option) (*operations.CreateExcludedAssetResponse, error) {
+func (s *ExcludedAssets) CreateExcludedAsset(ctx context.Context, graphID string, body components.AssetRefInput, xOrganizationID *string, opts ...operations.Option) (*operations.CreateExcludedAssetResponse, error) {
 	request := operations.CreateExcludedAssetRequest{
-		GraphID: graphID,
-		Body:    body,
+		XOrganizationID: xOrganizationID,
+		GraphID:         graphID,
+		Body:            body,
+	}
+
+	globals := operations.CreateExcludedAssetGlobals{
+		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
 	}
 
 	o := operations.Options{}
@@ -291,7 +307,7 @@ func (s *ExcludedAssets) CreateExcludedAsset(ctx context.Context, graphID string
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/excluded-assets", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/excluded-assets", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -302,7 +318,7 @@ func (s *ExcludedAssets) CreateExcludedAsset(ctx context.Context, graphID string
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-excluded-asset",
-		SecuritySource:   nil,
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -333,6 +349,12 @@ func (s *ExcludedAssets) CreateExcludedAsset(ctx context.Context, graphID string
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
+	}
+
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
 	}
 
 	for k, v := range o.SetHeaders {
@@ -502,10 +524,15 @@ func (s *ExcludedAssets) CreateExcludedAsset(ctx context.Context, graphID string
 // Remove an asset exclusion from an asset graph. The asset may reappear in future execution results.
 //
 // The removal takes effect during the next execution of the graph.
-func (s *ExcludedAssets) DeleteExcludedAsset(ctx context.Context, graphID string, excludedAssetID string, opts ...operations.Option) (*operations.DeleteExcludedAssetResponse, error) {
+func (s *ExcludedAssets) DeleteExcludedAsset(ctx context.Context, graphID string, excludedAssetID string, xOrganizationID *string, opts ...operations.Option) (*operations.DeleteExcludedAssetResponse, error) {
 	request := operations.DeleteExcludedAssetRequest{
+		XOrganizationID: xOrganizationID,
 		GraphID:         graphID,
 		ExcludedAssetID: excludedAssetID,
+	}
+
+	globals := operations.DeleteExcludedAssetGlobals{
+		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
 	}
 
 	o := operations.Options{}
@@ -526,7 +553,7 @@ func (s *ExcludedAssets) DeleteExcludedAsset(ctx context.Context, graphID string
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/excluded-assets/{excluded_asset_id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/excluded-assets/{excluded_asset_id}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -537,7 +564,7 @@ func (s *ExcludedAssets) DeleteExcludedAsset(ctx context.Context, graphID string
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "delete-excluded-asset",
-		SecuritySource:   nil,
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -557,6 +584,12 @@ func (s *ExcludedAssets) DeleteExcludedAsset(ctx context.Context, graphID string
 	}
 	req.Header.Set("Accept", "application/problem+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
 
 	for k, v := range o.SetHeaders {
 		req.Header.Set(k, v)

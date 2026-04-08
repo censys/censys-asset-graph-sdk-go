@@ -6,11 +6,31 @@ import (
 	"github.com/censys/censys-asset-graph-sdk-go/models/components"
 )
 
+type GetGraphExecutionGlobals struct {
+	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
+}
+
+func (g *GetGraphExecutionGlobals) GetXOrganizationID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.XOrganizationID
+}
+
 type GetGraphExecutionRequest struct {
+	// Censys organization ID
+	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
 	// Asset graph ID
 	GraphID string `pathParam:"style=simple,explode=false,name=graph_id"`
 	// Graph execution ID
 	ExecutionID string `pathParam:"style=simple,explode=false,name=execution_id"`
+}
+
+func (g *GetGraphExecutionRequest) GetXOrganizationID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.XOrganizationID
 }
 
 func (g *GetGraphExecutionRequest) GetGraphID() string {

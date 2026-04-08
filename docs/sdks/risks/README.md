@@ -25,7 +25,10 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := censysassetgraphsdkgo.New()
+    s := censysassetgraphsdkgo.New(
+        censysassetgraphsdkgo.WithXOrganizationID("<id>"),
+        censysassetgraphsdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    )
 
     res, err := s.Risks.GetRiskMetadata(ctx, "<id>")
     if err != nil {
@@ -43,6 +46,7 @@ func main() {
 | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                                 | :heavy_check_mark:                                                                                                    | The context to use for the request.                                                                                   |
 | `riskID`                                                                                                              | `string`                                                                                                              | :heavy_check_mark:                                                                                                    | A Censys risk ID (e.g. CENSYS-2025-1), threat ID (e.g. THREAT-1) or an external risk identifier (e.g. CVE-2025-00001) |
+| `xOrganizationID`                                                                                                     | `*string`                                                                                                             | :heavy_minus_sign:                                                                                                    | Censys organization ID                                                                                                |
 | `opts`                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                              | :heavy_minus_sign:                                                                                                    | The options for this request.                                                                                         |
 
 ### Response

@@ -27,7 +27,10 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := censysassetgraphsdkgo.New()
+    s := censysassetgraphsdkgo.New(
+        censysassetgraphsdkgo.WithXOrganizationID("<id>"),
+        censysassetgraphsdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    )
 
     res, err := s.ExcludedAssets.ListExcludedAssets(ctx, "d35e689a-f077-4c42-9a51-c910d405951a", nil, nil)
     if err != nil {
@@ -45,6 +48,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
 | `graphID`                                                | `string`                                                 | :heavy_check_mark:                                       | Asset graph ID                                           |
+| `xOrganizationID`                                        | `*string`                                                | :heavy_minus_sign:                                       | Censys organization ID                                   |
 | `pageToken`                                              | `*string`                                                | :heavy_minus_sign:                                       | Pagination token from a previous response                |
 | `pageSize`                                               | `*int`                                                   | :heavy_minus_sign:                                       | Maximum number of results to return                      |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
@@ -81,7 +85,10 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := censysassetgraphsdkgo.New()
+    s := censysassetgraphsdkgo.New(
+        censysassetgraphsdkgo.WithXOrganizationID("<id>"),
+        censysassetgraphsdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    )
 
     res, err := s.ExcludedAssets.CreateExcludedAsset(ctx, "7963bfbf-3604-4856-9d82-e629613f61d0", components.AssetRefInput{})
     if err != nil {
@@ -100,6 +107,7 @@ func main() {
 | `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
 | `graphID`                                                            | `string`                                                             | :heavy_check_mark:                                                   | Asset graph ID                                                       |
 | `body`                                                               | [components.AssetRefInput](../../models/components/assetrefinput.md) | :heavy_check_mark:                                                   | N/A                                                                  |
+| `xOrganizationID`                                                    | `*string`                                                            | :heavy_minus_sign:                                                   | Censys organization ID                                               |
 | `opts`                                                               | [][operations.Option](../../models/operations/option.md)             | :heavy_minus_sign:                                                   | The options for this request.                                        |
 
 ### Response
@@ -133,7 +141,10 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := censysassetgraphsdkgo.New()
+    s := censysassetgraphsdkgo.New(
+        censysassetgraphsdkgo.WithXOrganizationID("<id>"),
+        censysassetgraphsdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    )
 
     res, err := s.ExcludedAssets.DeleteExcludedAsset(ctx, "160820a0-7989-4300-88e0-d23b52a8630c", "<id>")
     if err != nil {
@@ -152,6 +163,7 @@ func main() {
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
 | `graphID`                                                | `string`                                                 | :heavy_check_mark:                                       | Asset graph ID                                           |
 | `excludedAssetID`                                        | `string`                                                 | :heavy_check_mark:                                       | Excluded asset identifier                                |
+| `xOrganizationID`                                        | `*string`                                                | :heavy_minus_sign:                                       | Censys organization ID                                   |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response

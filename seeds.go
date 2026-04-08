@@ -32,11 +32,16 @@ func newSeeds(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hooks.Hook
 
 // ListSeeds - List seeds
 // List all seeds configured for an asset graph.
-func (s *Seeds) ListSeeds(ctx context.Context, graphID string, pageToken *string, pageSize *int, opts ...operations.Option) (*operations.ListSeedsResponse, error) {
+func (s *Seeds) ListSeeds(ctx context.Context, graphID string, xOrganizationID *string, pageToken *string, pageSize *int, opts ...operations.Option) (*operations.ListSeedsResponse, error) {
 	request := operations.ListSeedsRequest{
-		GraphID:   graphID,
-		PageToken: pageToken,
-		PageSize:  pageSize,
+		XOrganizationID: xOrganizationID,
+		GraphID:         graphID,
+		PageToken:       pageToken,
+		PageSize:        pageSize,
+	}
+
+	globals := operations.ListSeedsGlobals{
+		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
 	}
 
 	o := operations.Options{}
@@ -58,7 +63,7 @@ func (s *Seeds) ListSeeds(ctx context.Context, graphID string, pageToken *string
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/seeds", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/seeds", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -69,7 +74,7 @@ func (s *Seeds) ListSeeds(ctx context.Context, graphID string, pageToken *string
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-seeds",
-		SecuritySource:   nil,
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -95,8 +100,14 @@ func (s *Seeds) ListSeeds(ctx context.Context, graphID string, pageToken *string
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, globals, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
 	}
 
 	for k, v := range o.SetHeaders {
@@ -266,10 +277,15 @@ func (s *Seeds) ListSeeds(ctx context.Context, graphID string, pageToken *string
 // Add a seed to an asset graph. Seeds are persistent starting points used to discover additional assets. Supported seed types include IP addresses, domains, CIDRs, ASNs, certificates, and web properties.
 //
 // Modifications to seeds take effect during the next execution of the graph.
-func (s *Seeds) CreateSeed(ctx context.Context, graphID string, body components.AssetRefInput, opts ...operations.Option) (*operations.CreateSeedResponse, error) {
+func (s *Seeds) CreateSeed(ctx context.Context, graphID string, body components.AssetRefInput, xOrganizationID *string, opts ...operations.Option) (*operations.CreateSeedResponse, error) {
 	request := operations.CreateSeedRequest{
-		GraphID: graphID,
-		Body:    body,
+		XOrganizationID: xOrganizationID,
+		GraphID:         graphID,
+		Body:            body,
+	}
+
+	globals := operations.CreateSeedGlobals{
+		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
 	}
 
 	o := operations.Options{}
@@ -291,7 +307,7 @@ func (s *Seeds) CreateSeed(ctx context.Context, graphID string, body components.
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/seeds", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/seeds", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -302,7 +318,7 @@ func (s *Seeds) CreateSeed(ctx context.Context, graphID string, body components.
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-seed",
-		SecuritySource:   nil,
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -333,6 +349,12 @@ func (s *Seeds) CreateSeed(ctx context.Context, graphID string, body components.
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
+	}
+
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
 	}
 
 	for k, v := range o.SetHeaders {
@@ -500,10 +522,15 @@ func (s *Seeds) CreateSeed(ctx context.Context, graphID string, body components.
 
 // DeleteSeed - Delete a seed
 // Remove a seed from an asset graph. The removal takes effect during the next execution of the graph.
-func (s *Seeds) DeleteSeed(ctx context.Context, graphID string, seedID string, opts ...operations.Option) (*operations.DeleteSeedResponse, error) {
+func (s *Seeds) DeleteSeed(ctx context.Context, graphID string, seedID string, xOrganizationID *string, opts ...operations.Option) (*operations.DeleteSeedResponse, error) {
 	request := operations.DeleteSeedRequest{
-		GraphID: graphID,
-		SeedID:  seedID,
+		XOrganizationID: xOrganizationID,
+		GraphID:         graphID,
+		SeedID:          seedID,
+	}
+
+	globals := operations.DeleteSeedGlobals{
+		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
 	}
 
 	o := operations.Options{}
@@ -524,7 +551,7 @@ func (s *Seeds) DeleteSeed(ctx context.Context, graphID string, seedID string, o
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/seeds/{seed_id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/seeds/{seed_id}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -535,7 +562,7 @@ func (s *Seeds) DeleteSeed(ctx context.Context, graphID string, seedID string, o
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "delete-seed",
-		SecuritySource:   nil,
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -555,6 +582,12 @@ func (s *Seeds) DeleteSeed(ctx context.Context, graphID string, seedID string, o
 	}
 	req.Header.Set("Accept", "application/problem+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
 
 	for k, v := range o.SetHeaders {
 		req.Header.Set(k, v)

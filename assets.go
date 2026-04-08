@@ -35,6 +35,10 @@ func newAssets(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hooks.Hoo
 //
 // Only partial asset data is returned when listing. Use the get asset endpoint to retrieve full asset data including discovery paths.
 func (s *Assets) ListAssets(ctx context.Context, request operations.ListAssetsRequest, opts ...operations.Option) (*operations.ListAssetsResponse, error) {
+	globals := operations.ListAssetsGlobals{
+		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -54,7 +58,7 @@ func (s *Assets) ListAssets(ctx context.Context, request operations.ListAssetsRe
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/executions/{execution_id}/assets", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/executions/{execution_id}/assets", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -65,7 +69,7 @@ func (s *Assets) ListAssets(ctx context.Context, request operations.ListAssetsRe
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-assets",
-		SecuritySource:   nil,
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -91,8 +95,14 @@ func (s *Assets) ListAssets(ctx context.Context, request operations.ListAssetsRe
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, globals, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
 	}
 
 	for k, v := range o.SetHeaders {
@@ -260,11 +270,16 @@ func (s *Assets) ListAssets(ctx context.Context, request operations.ListAssetsRe
 
 // GetAsset - Get an asset
 // Retrieve full data for a single discovered asset, including discovery paths showing how it was found from your seeds.
-func (s *Assets) GetAsset(ctx context.Context, graphID string, executionID string, assetID string, opts ...operations.Option) (*operations.GetAssetResponse, error) {
+func (s *Assets) GetAsset(ctx context.Context, graphID string, executionID string, assetID string, xOrganizationID *string, opts ...operations.Option) (*operations.GetAssetResponse, error) {
 	request := operations.GetAssetRequest{
-		GraphID:     graphID,
-		ExecutionID: executionID,
-		AssetID:     assetID,
+		XOrganizationID: xOrganizationID,
+		GraphID:         graphID,
+		ExecutionID:     executionID,
+		AssetID:         assetID,
+	}
+
+	globals := operations.GetAssetGlobals{
+		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
 	}
 
 	o := operations.Options{}
@@ -286,7 +301,7 @@ func (s *Assets) GetAsset(ctx context.Context, graphID string, executionID strin
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/executions/{execution_id}/assets/{asset_id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/executions/{execution_id}/assets/{asset_id}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -297,7 +312,7 @@ func (s *Assets) GetAsset(ctx context.Context, graphID string, executionID strin
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-asset",
-		SecuritySource:   nil,
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -322,6 +337,12 @@ func (s *Assets) GetAsset(ctx context.Context, graphID string, executionID strin
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
 
 	for k, v := range o.SetHeaders {
 		req.Header.Set(k, v)

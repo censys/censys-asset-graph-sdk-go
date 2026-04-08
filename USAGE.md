@@ -11,7 +11,10 @@ import (
 func main() {
 	ctx := context.Background()
 
-	s := censysassetgraphsdkgo.New()
+	s := censysassetgraphsdkgo.New(
+		censysassetgraphsdkgo.WithXOrganizationID("<id>"),
+		censysassetgraphsdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	)
 
 	res, err := s.AssetGraphs.ListAssetGraphs(ctx, nil, nil)
 	if err != nil {

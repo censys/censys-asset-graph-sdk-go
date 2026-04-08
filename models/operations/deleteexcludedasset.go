@@ -6,11 +6,31 @@ import (
 	"github.com/censys/censys-asset-graph-sdk-go/models/components"
 )
 
+type DeleteExcludedAssetGlobals struct {
+	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
+}
+
+func (d *DeleteExcludedAssetGlobals) GetXOrganizationID() *string {
+	if d == nil {
+		return nil
+	}
+	return d.XOrganizationID
+}
+
 type DeleteExcludedAssetRequest struct {
+	// Censys organization ID
+	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
 	// Asset graph ID
 	GraphID string `pathParam:"style=simple,explode=false,name=graph_id"`
 	// Excluded asset identifier
 	ExcludedAssetID string `pathParam:"style=simple,explode=false,name=excluded_asset_id"`
+}
+
+func (d *DeleteExcludedAssetRequest) GetXOrganizationID() *string {
+	if d == nil {
+		return nil
+	}
+	return d.XOrganizationID
 }
 
 func (d *DeleteExcludedAssetRequest) GetGraphID() string {
