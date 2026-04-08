@@ -18,21 +18,12 @@ func (g *GetAssetGlobals) GetXOrganizationID() *string {
 }
 
 type GetAssetRequest struct {
-	// Censys organization ID
-	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
 	// Asset graph ID
 	GraphID string `pathParam:"style=simple,explode=false,name=graph_id"`
 	// Graph execution ID
 	ExecutionID string `pathParam:"style=simple,explode=false,name=execution_id"`
 	// Hex-encoded asset identifier
 	AssetID string `pathParam:"style=simple,explode=false,name=asset_id"`
-}
-
-func (g *GetAssetRequest) GetXOrganizationID() *string {
-	if g == nil {
-		return nil
-	}
-	return g.XOrganizationID
 }
 
 func (g *GetAssetRequest) GetGraphID() string {

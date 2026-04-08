@@ -107,7 +107,6 @@ func main() {
 | `graphID`                                                | `string`                                                 | :heavy_check_mark:                                       | Asset graph ID                                           |
 | `executionID`                                            | `string`                                                 | :heavy_check_mark:                                       | Graph execution ID                                       |
 | `assetID`                                                | `string`                                                 | :heavy_check_mark:                                       | Hex-encoded asset identifier                             |
-| `xOrganizationID`                                        | `*string`                                                | :heavy_minus_sign:                                       | Censys organization ID                                   |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response

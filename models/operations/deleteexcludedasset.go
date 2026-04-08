@@ -18,19 +18,10 @@ func (d *DeleteExcludedAssetGlobals) GetXOrganizationID() *string {
 }
 
 type DeleteExcludedAssetRequest struct {
-	// Censys organization ID
-	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
 	// Asset graph ID
 	GraphID string `pathParam:"style=simple,explode=false,name=graph_id"`
 	// Excluded asset identifier
 	ExcludedAssetID string `pathParam:"style=simple,explode=false,name=excluded_asset_id"`
-}
-
-func (d *DeleteExcludedAssetRequest) GetXOrganizationID() *string {
-	if d == nil {
-		return nil
-	}
-	return d.XOrganizationID
 }
 
 func (d *DeleteExcludedAssetRequest) GetGraphID() string {

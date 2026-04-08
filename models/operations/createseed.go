@@ -18,18 +18,9 @@ func (c *CreateSeedGlobals) GetXOrganizationID() *string {
 }
 
 type CreateSeedRequest struct {
-	// Censys organization ID
-	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
 	// Asset graph ID
 	GraphID string                   `pathParam:"style=simple,explode=false,name=graph_id"`
 	Body    components.AssetRefInput `request:"mediaType=application/json"`
-}
-
-func (c *CreateSeedRequest) GetXOrganizationID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.XOrganizationID
 }
 
 func (c *CreateSeedRequest) GetGraphID() string {

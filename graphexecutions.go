@@ -32,12 +32,11 @@ func newGraphExecutions(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *
 
 // ListGraphExecutions - List graph executions
 // List all executions for an asset graph. Results are sorted by descending update time.
-func (s *GraphExecutions) ListGraphExecutions(ctx context.Context, graphID string, xOrganizationID *string, pageToken *string, pageSize *int, opts ...operations.Option) (*operations.ListGraphExecutionsResponse, error) {
+func (s *GraphExecutions) ListGraphExecutions(ctx context.Context, graphID string, pageToken *string, pageSize *int, opts ...operations.Option) (*operations.ListGraphExecutionsResponse, error) {
 	request := operations.ListGraphExecutionsRequest{
-		XOrganizationID: xOrganizationID,
-		GraphID:         graphID,
-		PageToken:       pageToken,
-		PageSize:        pageSize,
+		GraphID:   graphID,
+		PageToken: pageToken,
+		PageSize:  pageSize,
 	}
 
 	globals := operations.ListGraphExecutionsGlobals{
@@ -277,10 +276,9 @@ func (s *GraphExecutions) ListGraphExecutions(ctx context.Context, graphID strin
 // Start a new on-demand execution for an asset graph. An execution triggers the discovery process using the graph's configured seeds and excluded assets. Creating an execution will preempt and cancel any currently running execution. Executions may take up to several hours to complete.
 //
 // Censys also periodically runs executions in the background. Older executions are removed automatically.
-func (s *GraphExecutions) CreateGraphExecution(ctx context.Context, graphID string, xOrganizationID *string, opts ...operations.Option) (*operations.CreateGraphExecutionResponse, error) {
+func (s *GraphExecutions) CreateGraphExecution(ctx context.Context, graphID string, opts ...operations.Option) (*operations.CreateGraphExecutionResponse, error) {
 	request := operations.CreateGraphExecutionRequest{
-		XOrganizationID: xOrganizationID,
-		GraphID:         graphID,
+		GraphID: graphID,
 	}
 
 	globals := operations.CreateGraphExecutionGlobals{
@@ -514,11 +512,10 @@ func (s *GraphExecutions) CreateGraphExecution(ctx context.Context, graphID stri
 
 // GetGraphExecution - Get a graph execution
 // Retrieve an execution, including its current status and discovery statistics.
-func (s *GraphExecutions) GetGraphExecution(ctx context.Context, graphID string, executionID string, xOrganizationID *string, opts ...operations.Option) (*operations.GetGraphExecutionResponse, error) {
+func (s *GraphExecutions) GetGraphExecution(ctx context.Context, graphID string, executionID string, opts ...operations.Option) (*operations.GetGraphExecutionResponse, error) {
 	request := operations.GetGraphExecutionRequest{
-		XOrganizationID: xOrganizationID,
-		GraphID:         graphID,
-		ExecutionID:     executionID,
+		GraphID:     graphID,
+		ExecutionID: executionID,
 	}
 
 	globals := operations.GetGraphExecutionGlobals{

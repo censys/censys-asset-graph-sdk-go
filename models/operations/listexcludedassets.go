@@ -18,21 +18,12 @@ func (l *ListExcludedAssetsGlobals) GetXOrganizationID() *string {
 }
 
 type ListExcludedAssetsRequest struct {
-	// Censys organization ID
-	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
 	// Asset graph ID
 	GraphID string `pathParam:"style=simple,explode=false,name=graph_id"`
 	// Pagination token from a previous response
 	PageToken *string `queryParam:"style=form,explode=false,name=page_token"`
 	// Maximum number of results to return
 	PageSize *int `queryParam:"style=form,explode=false,name=page_size"`
-}
-
-func (l *ListExcludedAssetsRequest) GetXOrganizationID() *string {
-	if l == nil {
-		return nil
-	}
-	return l.XOrganizationID
 }
 
 func (l *ListExcludedAssetsRequest) GetGraphID() string {

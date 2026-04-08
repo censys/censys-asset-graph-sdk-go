@@ -18,19 +18,10 @@ func (d *DeleteSeedGlobals) GetXOrganizationID() *string {
 }
 
 type DeleteSeedRequest struct {
-	// Censys organization ID
-	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
 	// Asset graph ID
 	GraphID string `pathParam:"style=simple,explode=false,name=graph_id"`
 	// Seed identifier
 	SeedID string `pathParam:"style=simple,explode=false,name=seed_id"`
-}
-
-func (d *DeleteSeedRequest) GetXOrganizationID() *string {
-	if d == nil {
-		return nil
-	}
-	return d.XOrganizationID
 }
 
 func (d *DeleteSeedRequest) GetGraphID() string {

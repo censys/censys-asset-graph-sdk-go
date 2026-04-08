@@ -32,12 +32,11 @@ func newSeeds(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hooks.Hook
 
 // ListSeeds - List seeds
 // List all seeds configured for an asset graph.
-func (s *Seeds) ListSeeds(ctx context.Context, graphID string, xOrganizationID *string, pageToken *string, pageSize *int, opts ...operations.Option) (*operations.ListSeedsResponse, error) {
+func (s *Seeds) ListSeeds(ctx context.Context, graphID string, pageToken *string, pageSize *int, opts ...operations.Option) (*operations.ListSeedsResponse, error) {
 	request := operations.ListSeedsRequest{
-		XOrganizationID: xOrganizationID,
-		GraphID:         graphID,
-		PageToken:       pageToken,
-		PageSize:        pageSize,
+		GraphID:   graphID,
+		PageToken: pageToken,
+		PageSize:  pageSize,
 	}
 
 	globals := operations.ListSeedsGlobals{
@@ -277,11 +276,10 @@ func (s *Seeds) ListSeeds(ctx context.Context, graphID string, xOrganizationID *
 // Add a seed to an asset graph. Seeds are persistent starting points used to discover additional assets. Supported seed types include IP addresses, domains, CIDRs, ASNs, certificates, and web properties.
 //
 // Modifications to seeds take effect during the next execution of the graph.
-func (s *Seeds) CreateSeed(ctx context.Context, graphID string, body components.AssetRefInput, xOrganizationID *string, opts ...operations.Option) (*operations.CreateSeedResponse, error) {
+func (s *Seeds) CreateSeed(ctx context.Context, graphID string, body components.AssetRefInput, opts ...operations.Option) (*operations.CreateSeedResponse, error) {
 	request := operations.CreateSeedRequest{
-		XOrganizationID: xOrganizationID,
-		GraphID:         graphID,
-		Body:            body,
+		GraphID: graphID,
+		Body:    body,
 	}
 
 	globals := operations.CreateSeedGlobals{
@@ -522,11 +520,10 @@ func (s *Seeds) CreateSeed(ctx context.Context, graphID string, body components.
 
 // DeleteSeed - Delete a seed
 // Remove a seed from an asset graph. The removal takes effect during the next execution of the graph.
-func (s *Seeds) DeleteSeed(ctx context.Context, graphID string, seedID string, xOrganizationID *string, opts ...operations.Option) (*operations.DeleteSeedResponse, error) {
+func (s *Seeds) DeleteSeed(ctx context.Context, graphID string, seedID string, opts ...operations.Option) (*operations.DeleteSeedResponse, error) {
 	request := operations.DeleteSeedRequest{
-		XOrganizationID: xOrganizationID,
-		GraphID:         graphID,
-		SeedID:          seedID,
+		GraphID: graphID,
+		SeedID:  seedID,
 	}
 
 	globals := operations.DeleteSeedGlobals{

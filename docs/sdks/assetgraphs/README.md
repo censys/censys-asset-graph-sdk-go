@@ -48,7 +48,6 @@ func main() {
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `xOrganizationID`                                        | `*string`                                                | :heavy_minus_sign:                                       | Censys organization ID                                   |
 | `pageToken`                                              | `*string`                                                | :heavy_minus_sign:                                       | Pagination token from a previous response                |
 | `pageSize`                                               | `*int`                                                   | :heavy_minus_sign:                                       | Maximum number of results to return                      |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
@@ -76,7 +75,6 @@ package main
 import(
 	"context"
 	censysassetgraphsdkgo "github.com/censys/censys-asset-graph-sdk-go"
-	"github.com/censys/censys-asset-graph-sdk-go/models/components"
 	"log"
 )
 
@@ -88,9 +86,7 @@ func main() {
         censysassetgraphsdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
-    res, err := s.AssetGraphs.CreateAssetGraph(ctx, components.CreateAssetGraphInputBody{
-        Name: "<value>",
-    })
+    res, err := s.AssetGraphs.CreateAssetGraph(ctx, "<value>", nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -102,12 +98,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `body`                                                                                       | [components.CreateAssetGraphInputBody](../../models/components/createassetgraphinputbody.md) | :heavy_check_mark:                                                                           | N/A                                                                                          |
-| `xOrganizationID`                                                                            | `*string`                                                                                    | :heavy_minus_sign:                                                                           | Censys organization ID                                                                       |
-| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `name`                                                   | `string`                                                 | :heavy_check_mark:                                       | User-defined name for this asset graph                   |
+| `description`                                            | `*string`                                                | :heavy_minus_sign:                                       | Optional description                                     |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
 
@@ -159,7 +155,6 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
 | `id`                                                     | `string`                                                 | :heavy_check_mark:                                       | Asset graph ID                                           |
-| `xOrganizationID`                                        | `*string`                                                | :heavy_minus_sign:                                       | Censys organization ID                                   |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
@@ -212,7 +207,6 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
 | `id`                                                     | `string`                                                 | :heavy_check_mark:                                       | Asset graph ID                                           |
-| `xOrganizationID`                                        | `*string`                                                | :heavy_minus_sign:                                       | Censys organization ID                                   |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response

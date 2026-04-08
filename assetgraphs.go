@@ -33,11 +33,10 @@ func newAssetGraphs(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hook
 
 // ListAssetGraphs - List asset graphs
 // List all asset graphs belonging to your Censys organization.
-func (s *AssetGraphs) ListAssetGraphs(ctx context.Context, xOrganizationID *string, pageToken *string, pageSize *int, opts ...operations.Option) (*operations.ListAssetGraphsResponse, error) {
+func (s *AssetGraphs) ListAssetGraphs(ctx context.Context, pageToken *string, pageSize *int, opts ...operations.Option) (*operations.ListAssetGraphsResponse, error) {
 	request := operations.ListAssetGraphsRequest{
-		XOrganizationID: xOrganizationID,
-		PageToken:       pageToken,
-		PageSize:        pageSize,
+		PageToken: pageToken,
+		PageSize:  pageSize,
 	}
 
 	globals := operations.ListAssetGraphsGlobals{
@@ -275,10 +274,10 @@ func (s *AssetGraphs) ListAssetGraphs(ctx context.Context, xOrganizationID *stri
 
 // CreateAssetGraph - Create an asset graph
 // Create a new asset graph. An asset graph provides comprehensive visibility into your Internet-facing assets. It is the parent resource for seeds, excluded assets, and executions.
-func (s *AssetGraphs) CreateAssetGraph(ctx context.Context, body components.CreateAssetGraphInputBody, xOrganizationID *string, opts ...operations.Option) (*operations.CreateAssetGraphResponse, error) {
-	request := operations.CreateAssetGraphRequest{
-		XOrganizationID: xOrganizationID,
-		Body:            body,
+func (s *AssetGraphs) CreateAssetGraph(ctx context.Context, name string, description *string, opts ...operations.Option) (*operations.CreateAssetGraphResponse, error) {
+	request := components.CreateAssetGraphInputBody{
+		Description: description,
+		Name:        name,
 	}
 
 	globals := operations.CreateAssetGraphGlobals{
@@ -317,7 +316,7 @@ func (s *AssetGraphs) CreateAssetGraph(ctx context.Context, body components.Crea
 		OperationID:      "create-asset-graph",
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -519,10 +518,9 @@ func (s *AssetGraphs) CreateAssetGraph(ctx context.Context, body components.Crea
 
 // DeleteAssetGraph - Delete an asset graph
 // Permanently delete an asset graph and all of its associated data, including seeds, excluded assets, and executions.
-func (s *AssetGraphs) DeleteAssetGraph(ctx context.Context, id string, xOrganizationID *string, opts ...operations.Option) (*operations.DeleteAssetGraphResponse, error) {
+func (s *AssetGraphs) DeleteAssetGraph(ctx context.Context, id string, opts ...operations.Option) (*operations.DeleteAssetGraphResponse, error) {
 	request := operations.DeleteAssetGraphRequest{
-		XOrganizationID: xOrganizationID,
-		ID:              id,
+		ID: id,
 	}
 
 	globals := operations.DeleteAssetGraphGlobals{
@@ -731,10 +729,9 @@ func (s *AssetGraphs) DeleteAssetGraph(ctx context.Context, id string, xOrganiza
 
 // GetAssetGraph - Get an asset graph
 // Retrieve an asset graph, including its active execution if one exists.
-func (s *AssetGraphs) GetAssetGraph(ctx context.Context, id string, xOrganizationID *string, opts ...operations.Option) (*operations.GetAssetGraphResponse, error) {
+func (s *AssetGraphs) GetAssetGraph(ctx context.Context, id string, opts ...operations.Option) (*operations.GetAssetGraphResponse, error) {
 	request := operations.GetAssetGraphRequest{
-		XOrganizationID: xOrganizationID,
-		ID:              id,
+		ID: id,
 	}
 
 	globals := operations.GetAssetGraphGlobals{
