@@ -18,17 +18,8 @@ func (c *CreateGraphExecutionGlobals) GetXOrganizationID() *string {
 }
 
 type CreateGraphExecutionRequest struct {
-	// Censys organization ID
-	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
 	// Asset graph ID
 	GraphID string `pathParam:"style=simple,explode=false,name=graph_id"`
-}
-
-func (c *CreateGraphExecutionRequest) GetXOrganizationID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.XOrganizationID
 }
 
 func (c *CreateGraphExecutionRequest) GetGraphID() string {

@@ -18,17 +18,8 @@ func (g *GetRiskMetadataGlobals) GetXOrganizationID() *string {
 }
 
 type GetRiskMetadataRequest struct {
-	// Censys organization ID
-	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
 	// A Censys risk ID (e.g. CENSYS-2025-1), threat ID (e.g. THREAT-1) or an external risk identifier (e.g. CVE-2025-00001)
 	RiskID string `pathParam:"style=simple,explode=false,name=risk_id"`
-}
-
-func (g *GetRiskMetadataRequest) GetXOrganizationID() *string {
-	if g == nil {
-		return nil
-	}
-	return g.XOrganizationID
 }
 
 func (g *GetRiskMetadataRequest) GetRiskID() string {

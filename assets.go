@@ -270,12 +270,11 @@ func (s *Assets) ListAssets(ctx context.Context, request operations.ListAssetsRe
 
 // GetAsset - Get an asset
 // Retrieve full data for a single discovered asset, including discovery paths showing how it was found from your seeds.
-func (s *Assets) GetAsset(ctx context.Context, graphID string, executionID string, assetID string, xOrganizationID *string, opts ...operations.Option) (*operations.GetAssetResponse, error) {
+func (s *Assets) GetAsset(ctx context.Context, graphID string, executionID string, assetID string, opts ...operations.Option) (*operations.GetAssetResponse, error) {
 	request := operations.GetAssetRequest{
-		XOrganizationID: xOrganizationID,
-		GraphID:         graphID,
-		ExecutionID:     executionID,
-		AssetID:         assetID,
+		GraphID:     graphID,
+		ExecutionID: executionID,
+		AssetID:     assetID,
 	}
 
 	globals := operations.GetAssetGlobals{

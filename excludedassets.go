@@ -32,12 +32,11 @@ func newExcludedAssets(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *h
 
 // ListExcludedAssets - List excluded assets
 // List all excluded assets configured for an asset graph.
-func (s *ExcludedAssets) ListExcludedAssets(ctx context.Context, graphID string, xOrganizationID *string, pageToken *string, pageSize *int, opts ...operations.Option) (*operations.ListExcludedAssetsResponse, error) {
+func (s *ExcludedAssets) ListExcludedAssets(ctx context.Context, graphID string, pageToken *string, pageSize *int, opts ...operations.Option) (*operations.ListExcludedAssetsResponse, error) {
 	request := operations.ListExcludedAssetsRequest{
-		XOrganizationID: xOrganizationID,
-		GraphID:         graphID,
-		PageToken:       pageToken,
-		PageSize:        pageSize,
+		GraphID:   graphID,
+		PageToken: pageToken,
+		PageSize:  pageSize,
 	}
 
 	globals := operations.ListExcludedAssetsGlobals{
@@ -277,11 +276,10 @@ func (s *ExcludedAssets) ListExcludedAssets(ctx context.Context, graphID string,
 // Exclude an asset from an asset graph. Excluded assets will not appear in the graph and will not be used to discover additional assets.
 //
 // Modifications to excluded assets take effect during the next execution of the graph.
-func (s *ExcludedAssets) CreateExcludedAsset(ctx context.Context, graphID string, body components.AssetRefInput, xOrganizationID *string, opts ...operations.Option) (*operations.CreateExcludedAssetResponse, error) {
+func (s *ExcludedAssets) CreateExcludedAsset(ctx context.Context, graphID string, body components.AssetRefInput, opts ...operations.Option) (*operations.CreateExcludedAssetResponse, error) {
 	request := operations.CreateExcludedAssetRequest{
-		XOrganizationID: xOrganizationID,
-		GraphID:         graphID,
-		Body:            body,
+		GraphID: graphID,
+		Body:    body,
 	}
 
 	globals := operations.CreateExcludedAssetGlobals{
@@ -524,9 +522,8 @@ func (s *ExcludedAssets) CreateExcludedAsset(ctx context.Context, graphID string
 // Remove an asset exclusion from an asset graph. The asset may reappear in future execution results.
 //
 // The removal takes effect during the next execution of the graph.
-func (s *ExcludedAssets) DeleteExcludedAsset(ctx context.Context, graphID string, excludedAssetID string, xOrganizationID *string, opts ...operations.Option) (*operations.DeleteExcludedAssetResponse, error) {
+func (s *ExcludedAssets) DeleteExcludedAsset(ctx context.Context, graphID string, excludedAssetID string, opts ...operations.Option) (*operations.DeleteExcludedAssetResponse, error) {
 	request := operations.DeleteExcludedAssetRequest{
-		XOrganizationID: xOrganizationID,
 		GraphID:         graphID,
 		ExcludedAssetID: excludedAssetID,
 	}

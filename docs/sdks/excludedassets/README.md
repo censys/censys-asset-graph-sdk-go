@@ -48,7 +48,6 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
 | `graphID`                                                | `string`                                                 | :heavy_check_mark:                                       | Asset graph ID                                           |
-| `xOrganizationID`                                        | `*string`                                                | :heavy_minus_sign:                                       | Censys organization ID                                   |
 | `pageToken`                                              | `*string`                                                | :heavy_minus_sign:                                       | Pagination token from a previous response                |
 | `pageSize`                                               | `*int`                                                   | :heavy_minus_sign:                                       | Maximum number of results to return                      |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
@@ -107,7 +106,6 @@ func main() {
 | `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
 | `graphID`                                                            | `string`                                                             | :heavy_check_mark:                                                   | Asset graph ID                                                       |
 | `body`                                                               | [components.AssetRefInput](../../models/components/assetrefinput.md) | :heavy_check_mark:                                                   | N/A                                                                  |
-| `xOrganizationID`                                                    | `*string`                                                            | :heavy_minus_sign:                                                   | Censys organization ID                                               |
 | `opts`                                                               | [][operations.Option](../../models/operations/option.md)             | :heavy_minus_sign:                                                   | The options for this request.                                        |
 
 ### Response
@@ -163,7 +161,6 @@ func main() {
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
 | `graphID`                                                | `string`                                                 | :heavy_check_mark:                                       | Asset graph ID                                           |
 | `excludedAssetID`                                        | `string`                                                 | :heavy_check_mark:                                       | Excluded asset identifier                                |
-| `xOrganizationID`                                        | `*string`                                                | :heavy_minus_sign:                                       | Censys organization ID                                   |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response

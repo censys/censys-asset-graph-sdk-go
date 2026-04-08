@@ -32,10 +32,9 @@ func newRisks(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hooks.Hook
 
 // GetRiskMetadata - Get static risk metadata
 // Retrieve additional metadata for a risk, such as long-form descriptions and references. Risk IDs can be found on asset data in vulnerabilities, exposures, misconfigurations, and threats.
-func (s *Risks) GetRiskMetadata(ctx context.Context, riskID string, xOrganizationID *string, opts ...operations.Option) (*operations.GetRiskMetadataResponse, error) {
+func (s *Risks) GetRiskMetadata(ctx context.Context, riskID string, opts ...operations.Option) (*operations.GetRiskMetadataResponse, error) {
 	request := operations.GetRiskMetadataRequest{
-		XOrganizationID: xOrganizationID,
-		RiskID:          riskID,
+		RiskID: riskID,
 	}
 
 	globals := operations.GetRiskMetadataGlobals{
