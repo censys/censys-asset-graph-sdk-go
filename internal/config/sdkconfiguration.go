@@ -3,6 +3,8 @@
 package config
 
 import (
+	"context"
+	"github.com/censys/censys-asset-graph-sdk-go/internal/globals"
 	"github.com/censys/censys-asset-graph-sdk-go/retry"
 	"net/http"
 	"time"
@@ -13,12 +15,13 @@ type HTTPClient interface {
 }
 
 type SDKConfiguration struct {
-	Client HTTPClient
-
+	Client      HTTPClient
+	Security    func(context.Context) (interface{}, error)
 	ServerURL   string
 	ServerIndex int
 	ServerList  []string
 	UserAgent   string
+	Globals     globals.Globals
 	RetryConfig *retry.Config
 	Timeout     *time.Duration
 }

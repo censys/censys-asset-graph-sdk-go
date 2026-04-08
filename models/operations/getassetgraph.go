@@ -6,9 +6,29 @@ import (
 	"github.com/censys/censys-asset-graph-sdk-go/models/components"
 )
 
+type GetAssetGraphGlobals struct {
+	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
+}
+
+func (g *GetAssetGraphGlobals) GetXOrganizationID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.XOrganizationID
+}
+
 type GetAssetGraphRequest struct {
+	// Censys organization ID
+	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
 	// Asset graph ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (g *GetAssetGraphRequest) GetXOrganizationID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.XOrganizationID
 }
 
 func (g *GetAssetGraphRequest) GetID() string {

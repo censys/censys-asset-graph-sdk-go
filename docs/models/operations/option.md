@@ -39,6 +39,30 @@ WithClient allows the overriding of the default HTTP client used by the SDK.
 censysassetgraphsdkgo.WithClient(httpClient)
 ```
 
+### WithSecurity
+
+WithSecurity configures the SDK to use the provided security details.
+
+```go
+censysassetgraphsdkgo.WithSecurity(/* ... */)
+```
+
+### WithSecuritySource
+
+WithSecuritySource configures the SDK to invoke the provided function on each method call to determine authentication.
+
+```go
+censysassetgraphsdkgo.WithSecuritySource(/* ... */)
+```
+
+### WithXOrganizationID
+
+WithXOrganizationID allows setting the XOrganizationID parameter for all supported operations.
+
+```go
+censysassetgraphsdkgo.WithXOrganizationID(/* ... */)
+```
+
 ### WithRetryConfig
 
 WithRetryConfig allows setting the default retry configuration used by the SDK for all supported operations.

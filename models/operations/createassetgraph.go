@@ -6,6 +6,37 @@ import (
 	"github.com/censys/censys-asset-graph-sdk-go/models/components"
 )
 
+type CreateAssetGraphGlobals struct {
+	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
+}
+
+func (c *CreateAssetGraphGlobals) GetXOrganizationID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.XOrganizationID
+}
+
+type CreateAssetGraphRequest struct {
+	// Censys organization ID
+	XOrganizationID *string                              `header:"style=simple,explode=false,name=X-Organization-ID"`
+	Body            components.CreateAssetGraphInputBody `request:"mediaType=application/json"`
+}
+
+func (c *CreateAssetGraphRequest) GetXOrganizationID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.XOrganizationID
+}
+
+func (c *CreateAssetGraphRequest) GetBody() components.CreateAssetGraphInputBody {
+	if c == nil {
+		return components.CreateAssetGraphInputBody{}
+	}
+	return c.Body
+}
+
 type CreateAssetGraphResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// OK

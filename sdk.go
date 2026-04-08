@@ -2,13 +2,16 @@
 
 package censysassetgraphsdkgo
 
-// Generated from OpenAPI doc version 1.0.4 and generator version 2.879.6
+// Generated from OpenAPI doc version 1.0.5 and generator version 2.879.6
 
 import (
+	"context"
 	"fmt"
 	"github.com/censys/censys-asset-graph-sdk-go/internal/config"
+	"github.com/censys/censys-asset-graph-sdk-go/internal/globals"
 	"github.com/censys/censys-asset-graph-sdk-go/internal/hooks"
 	"github.com/censys/censys-asset-graph-sdk-go/internal/utils"
+	"github.com/censys/censys-asset-graph-sdk-go/models/components"
 	"github.com/censys/censys-asset-graph-sdk-go/retry"
 	"net/http"
 	"time"
@@ -132,6 +135,30 @@ func WithClient(client HTTPClient) SDKOption {
 	}
 }
 
+// WithSecurity configures the SDK to use the provided security details
+func WithSecurity(personalAccessToken string) SDKOption {
+	return func(sdk *SDK) {
+		security := components.Security{PersonalAccessToken: personalAccessToken}
+		sdk.sdkConfiguration.Security = utils.AsSecuritySource(&security)
+	}
+}
+
+// WithSecuritySource configures the SDK to invoke the Security Source function on each method call to determine authentication
+func WithSecuritySource(security func(context.Context) (components.Security, error)) SDKOption {
+	return func(sdk *SDK) {
+		sdk.sdkConfiguration.Security = func(ctx context.Context) (interface{}, error) {
+			return security(ctx)
+		}
+	}
+}
+
+// WithXOrganizationID allows setting the XOrganizationID parameter for all supported operations
+func WithXOrganizationID(xOrganizationID string) SDKOption {
+	return func(sdk *SDK) {
+		sdk.sdkConfiguration.Globals.XOrganizationID = &xOrganizationID
+	}
+}
+
 func WithRetryConfig(retryConfig retry.Config) SDKOption {
 	return func(sdk *SDK) {
 		sdk.sdkConfiguration.RetryConfig = &retryConfig
@@ -148,9 +175,10 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
-		SDKVersion: "0.1.4",
+		SDKVersion: "0.2.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.1.4 2.879.6 1.0.4 github.com/censys/censys-asset-graph-sdk-go",
+			UserAgent:  "speakeasy-sdk/go 0.2.0 2.879.6 1.0.5 github.com/censys/censys-asset-graph-sdk-go",
+			Globals:    globals.Globals{},
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),

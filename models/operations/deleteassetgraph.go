@@ -6,9 +6,29 @@ import (
 	"github.com/censys/censys-asset-graph-sdk-go/models/components"
 )
 
+type DeleteAssetGraphGlobals struct {
+	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
+}
+
+func (d *DeleteAssetGraphGlobals) GetXOrganizationID() *string {
+	if d == nil {
+		return nil
+	}
+	return d.XOrganizationID
+}
+
 type DeleteAssetGraphRequest struct {
+	// Censys organization ID
+	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
 	// Asset graph ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (d *DeleteAssetGraphRequest) GetXOrganizationID() *string {
+	if d == nil {
+		return nil
+	}
+	return d.XOrganizationID
 }
 
 func (d *DeleteAssetGraphRequest) GetID() string {

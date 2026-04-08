@@ -6,9 +6,29 @@ import (
 	"github.com/censys/censys-asset-graph-sdk-go/models/components"
 )
 
+type GetRiskMetadataGlobals struct {
+	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
+}
+
+func (g *GetRiskMetadataGlobals) GetXOrganizationID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.XOrganizationID
+}
+
 type GetRiskMetadataRequest struct {
+	// Censys organization ID
+	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
 	// A Censys risk ID (e.g. CENSYS-2025-1), threat ID (e.g. THREAT-1) or an external risk identifier (e.g. CVE-2025-00001)
 	RiskID string `pathParam:"style=simple,explode=false,name=risk_id"`
+}
+
+func (g *GetRiskMetadataRequest) GetXOrganizationID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.XOrganizationID
 }
 
 func (g *GetRiskMetadataRequest) GetRiskID() string {

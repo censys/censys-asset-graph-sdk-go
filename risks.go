@@ -32,9 +32,14 @@ func newRisks(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hooks.Hook
 
 // GetRiskMetadata - Get static risk metadata
 // Retrieve additional metadata for a risk, such as long-form descriptions and references. Risk IDs can be found on asset data in vulnerabilities, exposures, misconfigurations, and threats.
-func (s *Risks) GetRiskMetadata(ctx context.Context, riskID string, opts ...operations.Option) (*operations.GetRiskMetadataResponse, error) {
+func (s *Risks) GetRiskMetadata(ctx context.Context, riskID string, xOrganizationID *string, opts ...operations.Option) (*operations.GetRiskMetadataResponse, error) {
 	request := operations.GetRiskMetadataRequest{
-		RiskID: riskID,
+		XOrganizationID: xOrganizationID,
+		RiskID:          riskID,
+	}
+
+	globals := operations.GetRiskMetadataGlobals{
+		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
 	}
 
 	o := operations.Options{}
@@ -56,7 +61,7 @@ func (s *Risks) GetRiskMetadata(ctx context.Context, riskID string, opts ...oper
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/risks/{risk_id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/risks/{risk_id}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -67,7 +72,7 @@ func (s *Risks) GetRiskMetadata(ctx context.Context, riskID string, opts ...oper
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-risk-metadata",
-		SecuritySource:   nil,
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -92,6 +97,12 @@ func (s *Risks) GetRiskMetadata(ctx context.Context, riskID string, opts ...oper
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
 
 	for k, v := range o.SetHeaders {
 		req.Header.Set(k, v)

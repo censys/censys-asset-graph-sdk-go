@@ -33,7 +33,10 @@ import (
 func main() {
 	ctx := context.Background()
 
-	s := censysassetgraphsdkgo.New()
+	s := censysassetgraphsdkgo.New(
+		censysassetgraphsdkgo.WithXOrganizationID("<id>"),
+		censysassetgraphsdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	)
 
 	res, err := s.AssetGraphs.ListAssetGraphs(ctx, nil, nil)
 	if err != nil {
@@ -46,6 +49,47 @@ func main() {
 
 ```
 <!-- End SDK Example Usage [usage] -->
+
+<!-- Start Authentication [security] -->
+## Authentication
+
+### Per-Client Security Schemes
+
+This SDK supports the following security scheme globally:
+
+| Name                  | Type | Scheme      |
+| --------------------- | ---- | ----------- |
+| `PersonalAccessToken` | http | HTTP Bearer |
+
+You can configure it using the `WithSecurity` option when initializing the SDK client instance. For example:
+```go
+package main
+
+import (
+	"context"
+	censysassetgraphsdkgo "github.com/censys/censys-asset-graph-sdk-go"
+	"log"
+)
+
+func main() {
+	ctx := context.Background()
+
+	s := censysassetgraphsdkgo.New(
+		censysassetgraphsdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+		censysassetgraphsdkgo.WithXOrganizationID("<id>"),
+	)
+
+	res, err := s.AssetGraphs.ListAssetGraphs(ctx, nil, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.ListAssetGraphsOutputBody != nil {
+		// handle response
+	}
+}
+
+```
+<!-- End Authentication [security] -->
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
@@ -110,7 +154,10 @@ import (
 func main() {
 	ctx := context.Background()
 
-	s := censysassetgraphsdkgo.New()
+	s := censysassetgraphsdkgo.New(
+		censysassetgraphsdkgo.WithXOrganizationID("<id>"),
+		censysassetgraphsdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	)
 
 	res, err := s.AssetGraphs.ListAssetGraphs(ctx, nil, nil, operations.WithRetries(
 		retry.Config{
@@ -159,6 +206,8 @@ func main() {
 				},
 				RetryConnectionErrors: false,
 			}),
+		censysassetgraphsdkgo.WithXOrganizationID("<id>"),
+		censysassetgraphsdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	res, err := s.AssetGraphs.ListAssetGraphs(ctx, nil, nil)
@@ -202,7 +251,10 @@ import (
 func main() {
 	ctx := context.Background()
 
-	s := censysassetgraphsdkgo.New()
+	s := censysassetgraphsdkgo.New(
+		censysassetgraphsdkgo.WithXOrganizationID("<id>"),
+		censysassetgraphsdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	)
 
 	res, err := s.AssetGraphs.ListAssetGraphs(ctx, nil, nil)
 	if err != nil {
@@ -238,6 +290,8 @@ func main() {
 
 	s := censysassetgraphsdkgo.New(
 		censysassetgraphsdkgo.WithServerURL("https://graph.data.censys.io"),
+		censysassetgraphsdkgo.WithXOrganizationID("<id>"),
+		censysassetgraphsdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	res, err := s.AssetGraphs.ListAssetGraphs(ctx, nil, nil)

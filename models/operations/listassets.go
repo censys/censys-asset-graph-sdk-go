@@ -6,7 +6,20 @@ import (
 	"github.com/censys/censys-asset-graph-sdk-go/models/components"
 )
 
+type ListAssetsGlobals struct {
+	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
+}
+
+func (l *ListAssetsGlobals) GetXOrganizationID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.XOrganizationID
+}
+
 type ListAssetsRequest struct {
+	// Censys organization ID
+	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
 	// Asset graph ID
 	GraphID string `pathParam:"style=simple,explode=false,name=graph_id"`
 	// Graph execution ID
@@ -17,6 +30,13 @@ type ListAssetsRequest struct {
 	PageSize *int `queryParam:"style=form,explode=false,name=page_size"`
 	// If true, only return assets with risks
 	Risks *bool `queryParam:"style=form,explode=false,name=risks"`
+}
+
+func (l *ListAssetsRequest) GetXOrganizationID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.XOrganizationID
 }
 
 func (l *ListAssetsRequest) GetGraphID() string {

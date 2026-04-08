@@ -6,10 +6,30 @@ import (
 	"github.com/censys/censys-asset-graph-sdk-go/models/components"
 )
 
+type CreateSeedGlobals struct {
+	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
+}
+
+func (c *CreateSeedGlobals) GetXOrganizationID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.XOrganizationID
+}
+
 type CreateSeedRequest struct {
+	// Censys organization ID
+	XOrganizationID *string `header:"style=simple,explode=false,name=X-Organization-ID"`
 	// Asset graph ID
 	GraphID string                   `pathParam:"style=simple,explode=false,name=graph_id"`
 	Body    components.AssetRefInput `request:"mediaType=application/json"`
+}
+
+func (c *CreateSeedRequest) GetXOrganizationID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.XOrganizationID
 }
 
 func (c *CreateSeedRequest) GetGraphID() string {

@@ -32,11 +32,16 @@ func newGraphExecutions(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *
 
 // ListGraphExecutions - List graph executions
 // List all executions for an asset graph. Results are sorted by descending update time.
-func (s *GraphExecutions) ListGraphExecutions(ctx context.Context, graphID string, pageToken *string, pageSize *int, opts ...operations.Option) (*operations.ListGraphExecutionsResponse, error) {
+func (s *GraphExecutions) ListGraphExecutions(ctx context.Context, graphID string, xOrganizationID *string, pageToken *string, pageSize *int, opts ...operations.Option) (*operations.ListGraphExecutionsResponse, error) {
 	request := operations.ListGraphExecutionsRequest{
-		GraphID:   graphID,
-		PageToken: pageToken,
-		PageSize:  pageSize,
+		XOrganizationID: xOrganizationID,
+		GraphID:         graphID,
+		PageToken:       pageToken,
+		PageSize:        pageSize,
+	}
+
+	globals := operations.ListGraphExecutionsGlobals{
+		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
 	}
 
 	o := operations.Options{}
@@ -58,7 +63,7 @@ func (s *GraphExecutions) ListGraphExecutions(ctx context.Context, graphID strin
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/executions", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/executions", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -69,7 +74,7 @@ func (s *GraphExecutions) ListGraphExecutions(ctx context.Context, graphID strin
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-graph-executions",
-		SecuritySource:   nil,
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -95,8 +100,14 @@ func (s *GraphExecutions) ListGraphExecutions(ctx context.Context, graphID strin
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, globals, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
 	}
 
 	for k, v := range o.SetHeaders {
@@ -266,9 +277,14 @@ func (s *GraphExecutions) ListGraphExecutions(ctx context.Context, graphID strin
 // Start a new on-demand execution for an asset graph. An execution triggers the discovery process using the graph's configured seeds and excluded assets. Creating an execution will preempt and cancel any currently running execution. Executions may take up to several hours to complete.
 //
 // Censys also periodically runs executions in the background. Older executions are removed automatically.
-func (s *GraphExecutions) CreateGraphExecution(ctx context.Context, graphID string, opts ...operations.Option) (*operations.CreateGraphExecutionResponse, error) {
+func (s *GraphExecutions) CreateGraphExecution(ctx context.Context, graphID string, xOrganizationID *string, opts ...operations.Option) (*operations.CreateGraphExecutionResponse, error) {
 	request := operations.CreateGraphExecutionRequest{
-		GraphID: graphID,
+		XOrganizationID: xOrganizationID,
+		GraphID:         graphID,
+	}
+
+	globals := operations.CreateGraphExecutionGlobals{
+		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
 	}
 
 	o := operations.Options{}
@@ -290,7 +306,7 @@ func (s *GraphExecutions) CreateGraphExecution(ctx context.Context, graphID stri
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/executions", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/executions", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -301,7 +317,7 @@ func (s *GraphExecutions) CreateGraphExecution(ctx context.Context, graphID stri
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-graph-execution",
-		SecuritySource:   nil,
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -326,6 +342,12 @@ func (s *GraphExecutions) CreateGraphExecution(ctx context.Context, graphID stri
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
 
 	for k, v := range o.SetHeaders {
 		req.Header.Set(k, v)
@@ -492,10 +514,15 @@ func (s *GraphExecutions) CreateGraphExecution(ctx context.Context, graphID stri
 
 // GetGraphExecution - Get a graph execution
 // Retrieve an execution, including its current status and discovery statistics.
-func (s *GraphExecutions) GetGraphExecution(ctx context.Context, graphID string, executionID string, opts ...operations.Option) (*operations.GetGraphExecutionResponse, error) {
+func (s *GraphExecutions) GetGraphExecution(ctx context.Context, graphID string, executionID string, xOrganizationID *string, opts ...operations.Option) (*operations.GetGraphExecutionResponse, error) {
 	request := operations.GetGraphExecutionRequest{
-		GraphID:     graphID,
-		ExecutionID: executionID,
+		XOrganizationID: xOrganizationID,
+		GraphID:         graphID,
+		ExecutionID:     executionID,
+	}
+
+	globals := operations.GetGraphExecutionGlobals{
+		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
 	}
 
 	o := operations.Options{}
@@ -517,7 +544,7 @@ func (s *GraphExecutions) GetGraphExecution(ctx context.Context, graphID string,
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/executions/{execution_id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/v1/asset-graphs/{graph_id}/executions/{execution_id}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -528,7 +555,7 @@ func (s *GraphExecutions) GetGraphExecution(ctx context.Context, graphID string,
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-graph-execution",
-		SecuritySource:   nil,
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -553,6 +580,12 @@ func (s *GraphExecutions) GetGraphExecution(ctx context.Context, graphID string,
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
 
 	for k, v := range o.SetHeaders {
 		req.Header.Set(k, v)
