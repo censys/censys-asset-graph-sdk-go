@@ -92,6 +92,10 @@ func main() {
 * [CreateSeed](docs/sdks/seeds/README.md#createseed) - Create a seed
 * [DeleteSeed](docs/sdks/seeds/README.md#deleteseed) - Delete a seed
 
+### [Shards](docs/sdks/shards/README.md)
+
+* [ListShards](docs/sdks/shards/README.md#listshards) - List shards
+
 </details>
 <!-- End Available Resources and Operations [operations] -->
 

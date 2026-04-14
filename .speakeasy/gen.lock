@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 65b8b64d-c37c-438a-8018-9afec4763321
 management:
-  docChecksum: c38e1d6f441bad00c5f8db5cb4ccd368
-  docVersion: 1.0.6
-  speakeasyVersion: 1.761.1
-  generationVersion: 2.879.6
-  releaseVersion: 0.3.0
-  configChecksum: de041707f6fa536a253fcccbe0380a5d
+  docChecksum: 5f30064a93ff579a0deabe26cefe5c67
+  docVersion: 1.0.8
+  speakeasyVersion: 1.761.5
+  generationVersion: 2.879.13
+  releaseVersion: 0.3.1
+  configChecksum: df8571188303a6f248ee75d02cd4708c
   repoURL: https://github.com/censys/censys-asset-graph-sdk-go.git
   installationURL: https://github.com/censys/censys-asset-graph-sdk-go
 persistentEdits:
@@ -49,7 +49,7 @@ trackedFiles:
     pristine_git_object: f8e3dd5d9b6d915d8ae44c837d913b7adeeda5cd
   assets.go:
     id: b6b18a05c076
-    last_write_checksum: sha1:852964ac308aa4222eb2144c5fc6d8700abf957d
+    last_write_checksum: sha1:461365a618213576ee6d70c048bd0a05a9b47422
     pristine_git_object: cb3bf7c8894d291357f93380a928e6ee83424b9e
   docs/models/components/activemq.md:
     id: 129c71866ba8
@@ -1063,6 +1063,8 @@ trackedFiles:
     id: b71415bf43c2
     last_write_checksum: sha1:62c3af0082b81168577ed747d29262a8b399400e
     pristine_git_object: 6cb2c49585d6996a1329bda56f2774a03e0ff788
+  docs/models/components/listshardsoutputbody.md:
+    last_write_checksum: sha1:ddfdd69d7f367586f86dcd16498d0fe6b12d2603
   docs/models/components/location.md:
     id: 6ac85d9d83d3
     last_write_checksum: sha1:0ea72d277f6f517282b44a713c2f617e5328c84c
@@ -1901,6 +1903,8 @@ trackedFiles:
     id: 015a97fb65e3
     last_write_checksum: sha1:4c79790e684ad3cd784409061c1f8736ed4c21b3
     pristine_git_object: c9cd0d0138fb0a984c9a8a9d773acd4e29fbb669
+  docs/models/components/shardresponse.md:
+    last_write_checksum: sha1:5000fc7b743352882409d763d968bf31f355f1d8
   docs/models/components/signature.md:
     id: c56d11b670b8
     last_write_checksum: sha1:20f2bd263ed29388e7dc121536158867b57d46db
@@ -2385,7 +2389,7 @@ trackedFiles:
     last_write_checksum: sha1:7930f4ebd1b4be649655c1d8b165053a4d07aa45
   docs/models/operations/listassetsrequest.md:
     id: ee1586c1212b
-    last_write_checksum: sha1:1decb0d88709a28ce8b0e91c1144d58b3944efd7
+    last_write_checksum: sha1:39f5d3788db77c14770f2ed85023d843502a1384
     pristine_git_object: 5e1ad38e478721c1decd44e56b9c702957b6a42e
   docs/models/operations/listassetsresponse.md:
     id: ce58eb0ecbe6
@@ -2421,6 +2425,12 @@ trackedFiles:
     id: 9e689e7a898a
     last_write_checksum: sha1:1083a3c111b21268e8cdea05fda120160a17811e
     pristine_git_object: 1e7fbc9fa9eada329bcf1f07ea588c74a4ca87e7
+  docs/models/operations/listshardsglobals.md:
+    last_write_checksum: sha1:8218bee41b0b892d81bb4fd496de4d8af932f8b5
+  docs/models/operations/listshardsrequest.md:
+    last_write_checksum: sha1:818acc3435f617211b2f8f358ab7c7548ac62790
+  docs/models/operations/listshardsresponse.md:
+    last_write_checksum: sha1:674ff5e273524e7164873eee97c953d8468f152f
   docs/models/operations/option.md:
     id: 2ac1bd52a5fb
     last_write_checksum: sha1:a28013a31972a06176ff560b624beec9a4d8f4eb
@@ -2431,7 +2441,7 @@ trackedFiles:
     pristine_git_object: b0e25ae24dbc47fa82a5675a8b750cfc2c9ca6e5
   docs/sdks/assets/README.md:
     id: c072a8a1f5c5
-    last_write_checksum: sha1:91ef6580d7737c804911ce8e14636cb993ba2728
+    last_write_checksum: sha1:c9b101a7f94748604361837322034f14b1eb7cad
     pristine_git_object: da5dd70e4fe854bb600b935aa9e9eafe72d250c5
   docs/sdks/excludedassets/README.md:
     id: cf1bbb677a89
@@ -2449,6 +2459,8 @@ trackedFiles:
     id: 9261fb602908
     last_write_checksum: sha1:ba73b473826fda33c54752ef4f712968d9dad53a
     pristine_git_object: 2fcbcd9ea6ee5c0b143046be9348af13f0d1e43e
+  docs/sdks/shards/README.md:
+    last_write_checksum: sha1:5c10aa6d0e269b865527e1d07fa62573295905c8
   excludedassets.go:
     id: e9d55f487105
     last_write_checksum: sha1:1bc5c1894509dfb2186f6cee3318d998e1f22c2b
@@ -3443,6 +3455,8 @@ trackedFiles:
     id: 76a6d47c08e8
     last_write_checksum: sha1:333e5224ce214aae96ac773d12db16333bbedb66
     pristine_git_object: 8b0ed9d1d8a2f7060d4b6e2dbdbf070f1926f29e
+  models/components/listshardsoutputbody.go:
+    last_write_checksum: sha1:37bc6e49ff9600d4c2ff3230db6b070d69fec01d
   models/components/location.go:
     id: fb1982d61043
     last_write_checksum: sha1:067ff7dd6aa92483f16a069ddaf538711e7189b3
@@ -4217,6 +4231,8 @@ trackedFiles:
     id: 0fc6cb54e689
     last_write_checksum: sha1:78086a58f773203db35e1027510b73343b218fa1
     pristine_git_object: 9a80305916db819983877c69c9e0168cdf306c04
+  models/components/shardresponse.go:
+    last_write_checksum: sha1:135690b4adaf2393fba15224d4689ee098f2d9cb
   models/components/signature.go:
     id: 1c8363334794
     last_write_checksum: sha1:53e60957e52c872bef5df420fa6058daa9586d43
@@ -4591,7 +4607,7 @@ trackedFiles:
     pristine_git_object: 9de8d86712e28c0729333308d891bb1b7df25ddb
   models/operations/listassets.go:
     id: 29caf80365b4
-    last_write_checksum: sha1:8dcbd41629f503b5d78cc9f106b7dc0ed34c8ad2
+    last_write_checksum: sha1:f38c3ea0b6dd96c295359c7dccfd8ece29e15ddb
     pristine_git_object: 2e242c35781535781601751d93e237df479ae046
   models/operations/listexcludedassets.go:
     id: 58066638d059
@@ -4605,6 +4621,8 @@ trackedFiles:
     id: 1144b4329b76
     last_write_checksum: sha1:96fdfa27ff08666be27fc0d6d00fb397cf8a98f7
     pristine_git_object: 09a7c87b7a6746ae6e93156d43ad45cfb241c4c2
+  models/operations/listshards.go:
+    last_write_checksum: sha1:99032eb6fc17868743645a7eeafdfcc26be8af47
   models/operations/options.go:
     id: d20dd4db9865
     last_write_checksum: sha1:727f182ad8c8b0b756ffe30632e4baf2e735949e
@@ -4627,12 +4645,14 @@ trackedFiles:
     pristine_git_object: b00dae436f9eaa8d03f5246b373052e6f5da3563
   sdk.go:
     id: 8db9b9536b0a
-    last_write_checksum: sha1:6fbec7b1770782cded95bbcd4cc1ca6196627d0e
+    last_write_checksum: sha1:c21ebf6f3e68f404fbbf37bd8b1aad2e5208f364
     pristine_git_object: 3af36e9b8e56af57e6b701dbd746c30d308c2243
   seeds.go:
     id: 4cb79c731994
     last_write_checksum: sha1:dc2ae6787d8b5eab2a47cbfac37071ee6ec9fa41
     pristine_git_object: e7f5634a0c7ea0bbb1dade8368da57f3f93fe4c3
+  shards.go:
+    last_write_checksum: sha1:12ea1113e59afc191a423ca0c2bc866f31560c0b
   types/bigint.go:
     id: 6f911e1a03c3
     last_write_checksum: sha1:49b004005d0461fb04b846eca062b070b0360b31
@@ -5032,6 +5052,19 @@ examples:
       responses:
         "200":
           application/json: {"$schema": "https://graph.data.censys.io/schemas/RiskMetadata.json", "added_at": "2025-09-20T08:39:57.920Z", "description": "vibration psst handle brochure", "name": "<value>", "references": []}
+        default:
+          application/problem+json: {"$schema": "https://graph.data.censys.io/schemas/ErrorModel.json", "detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  list-shards:
+    speakeasy-default-list-shards:
+      parameters:
+        path:
+          graph_id: "65f6869f-38a1-482e-acf9-4191516b36b8"
+          execution_id: "64ea342e-81b6-451c-952b-7ea00509ae35"
+        header:
+          X-Organization-ID: "b6b95e3a-683b-4315-8ff6-4577e4d17490"
+      responses:
+        "200":
+          application/json: {"$schema": "https://graph.data.censys.io/schemas/ListShardsOutputBody.json", "shards": []}
         default:
           application/problem+json: {"$schema": "https://graph.data.censys.io/schemas/ErrorModel.json", "detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
 examplesVersion: 1.0.2

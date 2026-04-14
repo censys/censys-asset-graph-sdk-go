@@ -34,6 +34,8 @@ func newAssets(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hooks.Hoo
 // List assets discovered in a graph execution. Each execution represents a complete snapshot of the attack surface.
 //
 // Only partial asset data is returned when listing. Use the get asset endpoint to retrieve full asset data including discovery paths.
+//
+// When a shard is specified, full asset data is returned for all assets in that shard.
 func (s *Assets) ListAssets(ctx context.Context, request operations.ListAssetsRequest, opts ...operations.Option) (*operations.ListAssetsResponse, error) {
 	globals := operations.ListAssetsGlobals{
 		XOrganizationID: s.sdkConfiguration.Globals.XOrganizationID,
