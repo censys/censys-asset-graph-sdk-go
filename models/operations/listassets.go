@@ -28,6 +28,8 @@ type ListAssetsRequest struct {
 	PageSize *int `queryParam:"style=form,explode=false,name=page_size"`
 	// If true, only return assets with risks
 	Risks *bool `queryParam:"style=form,explode=false,name=risks"`
+	// Shard ID to filter assets by. When provided, full asset data is returned instead of the default partial view. Use the list shards endpoint to discover available shards.
+	Shard *string `queryParam:"style=form,explode=false,name=shard"`
 }
 
 func (l *ListAssetsRequest) GetGraphID() string {
@@ -63,6 +65,13 @@ func (l *ListAssetsRequest) GetRisks() *bool {
 		return nil
 	}
 	return l.Risks
+}
+
+func (l *ListAssetsRequest) GetShard() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Shard
 }
 
 type ListAssetsResponse struct {

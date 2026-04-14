@@ -13,6 +13,8 @@ List assets discovered in a graph execution. Each execution represents a complet
 
 Only partial asset data is returned when listing. Use the get asset endpoint to retrieve full asset data including discovery paths.
 
+When a shard is specified, full asset data is returned for all assets in that shard.
+
 ### Example Usage
 
 <!-- UsageSnippet language="go" operationID="list-assets" method="get" path="/api/v1/asset-graphs/{graph_id}/executions/{execution_id}/assets" -->

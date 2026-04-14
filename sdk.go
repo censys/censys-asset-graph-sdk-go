@@ -2,7 +2,7 @@
 
 package censysassetgraphsdkgo
 
-// Generated from OpenAPI doc version 1.0.6 and generator version 2.879.6
+// Generated from OpenAPI doc version 1.0.8 and generator version 2.879.13
 
 import (
 	"context"
@@ -90,6 +90,7 @@ type SDK struct {
 	ExcludedAssets  *ExcludedAssets
 	GraphExecutions *GraphExecutions
 	Assets          *Assets
+	Shards          *Shards
 	Seeds           *Seeds
 	Risks           *Risks
 
@@ -175,9 +176,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
-		SDKVersion: "0.3.0",
+		SDKVersion: "0.3.1",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.3.0 2.879.6 1.0.6 github.com/censys/censys-asset-graph-sdk-go",
+			UserAgent:  "speakeasy-sdk/go 0.3.1 2.879.13 1.0.8 github.com/censys/censys-asset-graph-sdk-go",
 			Globals:    globals.Globals{},
 			ServerList: ServerList,
 		},
@@ -198,6 +199,7 @@ func New(opts ...SDKOption) *SDK {
 	sdk.ExcludedAssets = newExcludedAssets(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.GraphExecutions = newGraphExecutions(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Assets = newAssets(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Shards = newShards(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Seeds = newSeeds(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Risks = newRisks(sdk, sdk.sdkConfiguration, sdk.hooks)
 
