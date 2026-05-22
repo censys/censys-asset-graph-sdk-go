@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 65b8b64d-c37c-438a-8018-9afec4763321
 management:
-  docChecksum: 14fb66c27980d627bef0e85c1c607f76
-  docVersion: 1.0.10
+  docChecksum: fb4e0cb37b97e6cb91c05fa48246dca8
+  docVersion: 1.0.12
   speakeasyVersion: 1.761.5
   generationVersion: 2.879.13
-  releaseVersion: 0.3.2
-  configChecksum: cf428b633ac8d337fdda9b7d86617c09
+  releaseVersion: 0.3.3
+  configChecksum: e8db737f0502253000b72e95b02b8290
   repoURL: https://github.com/censys/censys-asset-graph-sdk-go.git
   installationURL: https://github.com/censys/censys-asset-graph-sdk-go
 persistentEdits:
@@ -85,11 +85,11 @@ trackedFiles:
     pristine_git_object: 1c26f022cd7a0dc1f3d026466f292996c19d40b9
   docs/models/components/assetref.md:
     id: cba4f18e1faf
-    last_write_checksum: sha1:cee66032b72096d7bfcf6302630bc1949890cd92
+    last_write_checksum: sha1:9f4de840b51e203436420796dfbb7eb7a9155df3
     pristine_git_object: 9833ad4073d5b6e9a3b82035031218722d6ba40a
   docs/models/components/assetrefinput.md:
     id: 00120ba8cbea
-    last_write_checksum: sha1:9f0592a97fe5dfc80bc5a9b1020ed786ef84ca59
+    last_write_checksum: sha1:f7a4e9d15e27787082d013ad5baa692763fd0e19
     pristine_git_object: 5454564dd91fd80ab7b444b521b7325320743647
   docs/models/components/assetresponse.md:
     id: e8b9986d835d
@@ -2575,11 +2575,11 @@ trackedFiles:
     pristine_git_object: 40ba5e47c37e51d517c3f132948d159f95c9c34c
   models/components/assetref.go:
     id: fb561c77b7cd
-    last_write_checksum: sha1:eabd187ba50524dda51b8e2a391a465f88088ecf
+    last_write_checksum: sha1:e5166f13d99ea7caf6520c2c0722f906941e8690
     pristine_git_object: c8363014fcc27ed02fd6ef72a5bc047090a4b945
   models/components/assetrefinput.go:
     id: f98fcecc480f
-    last_write_checksum: sha1:142548b473ce1a83d8ac7c38d5f8c417bac66b95
+    last_write_checksum: sha1:2ec2521018dcdd95cf5548b6e67a9c76248c4aef
     pristine_git_object: effe9b01bf64cce6efc003f0d311da37acfaf2b0
   models/components/assetresponse.go:
     id: 2a0bd300cb73
@@ -4647,7 +4647,7 @@ trackedFiles:
     pristine_git_object: b00dae436f9eaa8d03f5246b373052e6f5da3563
   sdk.go:
     id: 8db9b9536b0a
-    last_write_checksum: sha1:57b6b388d8e338a72ae354e078e1b5c41fd466eb
+    last_write_checksum: sha1:b0862c3d154c5352c3aaa2b92dabcb3d65728290
     pristine_git_object: 3af36e9b8e56af57e6b701dbd746c30d308c2243
   seeds.go:
     id: 4cb79c731994
