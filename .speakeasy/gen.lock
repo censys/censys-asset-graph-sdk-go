@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 65b8b64d-c37c-438a-8018-9afec4763321
 management:
-  docChecksum: 14fb66c27980d627bef0e85c1c607f76
-  docVersion: 1.0.10
+  docChecksum: 099dfa3051c35308363092434442b454
+  docVersion: 1.0.11
   speakeasyVersion: 1.761.5
   generationVersion: 2.879.13
-  releaseVersion: 0.3.2
-  configChecksum: cf428b633ac8d337fdda9b7d86617c09
+  releaseVersion: 0.3.3
+  configChecksum: e8db737f0502253000b72e95b02b8290
   repoURL: https://github.com/censys/censys-asset-graph-sdk-go.git
   installationURL: https://github.com/censys/censys-asset-graph-sdk-go
 persistentEdits:
@@ -85,12 +85,8 @@ trackedFiles:
     pristine_git_object: 1c26f022cd7a0dc1f3d026466f292996c19d40b9
   docs/models/components/assetref.md:
     id: cba4f18e1faf
-    last_write_checksum: sha1:cee66032b72096d7bfcf6302630bc1949890cd92
+    last_write_checksum: sha1:af473833bfd5b9d9ae7fccf3cb9ee447fc7b4a65
     pristine_git_object: 9833ad4073d5b6e9a3b82035031218722d6ba40a
-  docs/models/components/assetrefinput.md:
-    id: 00120ba8cbea
-    last_write_checksum: sha1:9f0592a97fe5dfc80bc5a9b1020ed786ef84ca59
-    pristine_git_object: 5454564dd91fd80ab7b444b521b7325320743647
   docs/models/components/assetresponse.md:
     id: e8b9986d835d
     last_write_checksum: sha1:450b07575ef6a15c50c3d4bdc70ada68fe193e18
@@ -1407,7 +1403,7 @@ trackedFiles:
     pristine_git_object: ec59d41abbc55c6a75230280ffa6e468f09d58e3
   docs/models/components/pathsegment.md:
     id: 23b3125713df
-    last_write_checksum: sha1:24e5b9fc89db99e6096be47a873fdc34a3c1b0ec
+    last_write_checksum: sha1:ba9638e666dd48f324ae0a3a463701bfe05d9b0d
     pristine_git_object: 2e8953eaf0cdc9ee99461bfe4d3d5d031870569f
   docs/models/components/pcanywhere.md:
     id: bfe008b3d2a3
@@ -1871,6 +1867,8 @@ trackedFiles:
     id: aaabafb6b0b3
     last_write_checksum: sha1:bf2902e303a5951c185e5383d9d895e0352ac626
     pristine_git_object: 24058d9cfdb4caf3ce0da421324b29432f86da8a
+  docs/models/components/segmentvertex.md:
+    last_write_checksum: sha1:12e8a70a0980d9d1442ed555688811b3c2852ec5
   docs/models/components/ser2net.md:
     id: 0bf2b82389d8
     last_write_checksum: sha1:f1ebe0bceddd070a85f30049107ef3eb17772d86
@@ -2281,7 +2279,7 @@ trackedFiles:
     last_write_checksum: sha1:b9f9a3579debf209daed169bd24a251ff5f32d94
   docs/models/operations/createexcludedassetrequest.md:
     id: 2d1a9213de13
-    last_write_checksum: sha1:8bfd89c1f4b515c6d65ca8a41b061ff1a696498c
+    last_write_checksum: sha1:9887bd551c331eb6fc7d9d889f433e18ad71555a
     pristine_git_object: 6b027a5c97c208b316514383bff2cfdb2296c3c8
   docs/models/operations/createexcludedassetresponse.md:
     id: 7e52b6030efc
@@ -2301,7 +2299,7 @@ trackedFiles:
     last_write_checksum: sha1:a25d6eb82373277fbdaf6d7fe5f57417a886ac8b
   docs/models/operations/createseedrequest.md:
     id: 4a6a7b225f0e
-    last_write_checksum: sha1:dea79bf1721f37a7c9eab4931f4662da29fa8e0d
+    last_write_checksum: sha1:c9ac1ae926506d3fde2ab144603de9ed7e67ac9f
     pristine_git_object: 103d14fc36702145524f0de22e5937f8118e5cd3
   docs/models/operations/createseedresponse.md:
     id: 43726a23a776
@@ -2447,7 +2445,7 @@ trackedFiles:
     pristine_git_object: da5dd70e4fe854bb600b935aa9e9eafe72d250c5
   docs/sdks/excludedassets/README.md:
     id: cf1bbb677a89
-    last_write_checksum: sha1:50de0b4a0fbc2e580c9a242a503f44268f63471b
+    last_write_checksum: sha1:1bb2a3b94094186830bf3028fb793f018c09921c
     pristine_git_object: 728f009c7a25215f3079ece1694cddfadec7760f
   docs/sdks/graphexecutions/README.md:
     id: 7847840ad84e
@@ -2459,13 +2457,13 @@ trackedFiles:
     pristine_git_object: 7a7bd16de1754f32b69138bb85aac7b8bd190670
   docs/sdks/seeds/README.md:
     id: 9261fb602908
-    last_write_checksum: sha1:ba73b473826fda33c54752ef4f712968d9dad53a
+    last_write_checksum: sha1:a95e1503dbe33442a53e6307c6e55553895a5576
     pristine_git_object: 2fcbcd9ea6ee5c0b143046be9348af13f0d1e43e
   docs/sdks/shards/README.md:
     last_write_checksum: sha1:5c10aa6d0e269b865527e1d07fa62573295905c8
   excludedassets.go:
     id: e9d55f487105
-    last_write_checksum: sha1:1bc5c1894509dfb2186f6cee3318d998e1f22c2b
+    last_write_checksum: sha1:715fe1c94d093e67e2f1eb69559e46384046e398
     pristine_git_object: bf0bf49178178f965b869d7025149d8c9baabce8
   go.mod:
     id: c47645c391ad
@@ -2575,12 +2573,8 @@ trackedFiles:
     pristine_git_object: 40ba5e47c37e51d517c3f132948d159f95c9c34c
   models/components/assetref.go:
     id: fb561c77b7cd
-    last_write_checksum: sha1:eabd187ba50524dda51b8e2a391a465f88088ecf
+    last_write_checksum: sha1:6cfe7a149606dc03990d1267596b01f75e467b88
     pristine_git_object: c8363014fcc27ed02fd6ef72a5bc047090a4b945
-  models/components/assetrefinput.go:
-    id: f98fcecc480f
-    last_write_checksum: sha1:142548b473ce1a83d8ac7c38d5f8c417bac66b95
-    pristine_git_object: effe9b01bf64cce6efc003f0d311da37acfaf2b0
   models/components/assetresponse.go:
     id: 2a0bd300cb73
     last_write_checksum: sha1:9400663a85c02dc9f00ee5ae89eafc761812f4fb
@@ -3797,7 +3791,7 @@ trackedFiles:
     pristine_git_object: 904e9d862fe418e8054f8bbb536ce3996e518706
   models/components/pathsegment.go:
     id: 1bd7e78b2343
-    last_write_checksum: sha1:318e7e066fcbc13f39f2ec6fda545d00aad5ade0
+    last_write_checksum: sha1:7f38b2163fecfef364233aa3131909a845f51d3a
     pristine_git_object: c7dc22e0a0813bc0fe1c85e0970220a62af99d5d
   models/components/pcanywhere.go:
     id: 4ec10d12ca45
@@ -4209,6 +4203,8 @@ trackedFiles:
     id: 23b8bdcbd15f
     last_write_checksum: sha1:0178c3ddf705a7da4a29437cbcda10892fe6484f
     pristine_git_object: 893e727c0e2b9abb5b8f6dace39b79b05ea26e14
+  models/components/segmentvertex.go:
+    last_write_checksum: sha1:4f242c6fbe53fccaec686a9f8b7576c9cc07b88b
   models/components/ser2net.go:
     id: 942615fb07df
     last_write_checksum: sha1:e4701fec7a182b975f4668c646ced93b9da9323f
@@ -4565,7 +4561,7 @@ trackedFiles:
     pristine_git_object: 807a4db772aae35d05bee870261a21fa3f1b462b
   models/operations/createexcludedasset.go:
     id: 7ab7e624b899
-    last_write_checksum: sha1:e215cecbc014fe66f34801dce8af42420c31eeaf
+    last_write_checksum: sha1:1a5cf7c209906753435b32351ce765b24960b55f
     pristine_git_object: e1412c2a8b3dd97b973a780958f09573aa965dcc
   models/operations/creategraphexecution.go:
     id: 6524fb2a9c7a
@@ -4573,7 +4569,7 @@ trackedFiles:
     pristine_git_object: abca8e9931a791df1d8eac4e55052524d106792d
   models/operations/createseed.go:
     id: c251d021ac13
-    last_write_checksum: sha1:86712c45240a7534037c3828476fb9885ae8f78d
+    last_write_checksum: sha1:213991d26e7a78c146b48afa0aa4bccfa8b73e0b
     pristine_git_object: 0437f9933e7d6bdc9b547b801769bd34cd17ef2a
   models/operations/deleteassetgraph.go:
     id: 9d333a85a0a0
@@ -4647,11 +4643,11 @@ trackedFiles:
     pristine_git_object: b00dae436f9eaa8d03f5246b373052e6f5da3563
   sdk.go:
     id: 8db9b9536b0a
-    last_write_checksum: sha1:57b6b388d8e338a72ae354e078e1b5c41fd466eb
+    last_write_checksum: sha1:1d927540a2558c6aef820ba8d80bd7783cca1b79
     pristine_git_object: 3af36e9b8e56af57e6b701dbd746c30d308c2243
   seeds.go:
     id: 4cb79c731994
-    last_write_checksum: sha1:dc2ae6787d8b5eab2a47cbfac37071ee6ec9fa41
+    last_write_checksum: sha1:a1e6179954bd47a10a1d56e1199c113a435c95e5
     pristine_git_object: e7f5634a0c7ea0bbb1dade8368da57f3f93fe4c3
   shards.go:
     last_write_checksum: sha1:12ea1113e59afc191a423ca0c2bc866f31560c0b
@@ -4990,7 +4986,7 @@ examples:
           X-Organization-ID: "<id>"
       responses:
         "200":
-          application/json: {"$schema": "https://graph.data.censys.io/schemas/ListAssetsOutputBody.json", "assets": [{"$schema": "https://graph.data.censys.io/schemas/AssetResponse.json", "discovery_paths": [{"segments": [{"end": {"$schema": "https://graph.data.censys.io/schemas/AssetRef.json"}, "relationship": {"type": "<value>"}, "start": {"$schema": "https://graph.data.censys.io/schemas/AssetRef.json"}}]}], "id": "<id>"}]}
+          application/json: {"$schema": "https://graph.data.censys.io/schemas/ListAssetsOutputBody.json", "assets": [{"$schema": "https://graph.data.censys.io/schemas/AssetResponse.json", "discovery_paths": [{"segments": [{"end": {"id": "<id>"}, "relationship": {"type": "<value>"}, "start": {"id": "<id>"}}]}], "id": "<id>"}]}
         default:
           application/problem+json: {"$schema": "https://graph.data.censys.io/schemas/ErrorModel.json", "detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   get-asset:
@@ -5004,7 +5000,7 @@ examples:
           X-Organization-ID: "<id>"
       responses:
         "200":
-          application/json: {"$schema": "https://graph.data.censys.io/schemas/AssetResponse.json", "discovery_paths": [{"segments": []}], "id": "<id>"}
+          application/json: {"$schema": "https://graph.data.censys.io/schemas/AssetResponse.json", "id": "<id>"}
         default:
           application/problem+json: {"$schema": "https://graph.data.censys.io/schemas/ErrorModel.json", "detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   list-seeds:

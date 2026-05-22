@@ -3,8 +3,6 @@
 package components
 
 type AssetRef struct {
-	// A URL to the JSON Schema for this object.
-	DollarSchema *string `json:"$schema,omitempty"`
 	// Autonomous system number (ASN)
 	AutonomousSystem *int `json:"autonomous_system,omitempty"`
 	// Organization name
@@ -22,13 +20,6 @@ type AssetRef struct {
 	// Registrant organization name
 	RegistrantOrganization *string                `json:"registrant_organization,omitempty"`
 	WebProperty            *WebPropertyIdentifier `json:"web_property,omitempty"`
-}
-
-func (a *AssetRef) GetDollarSchema() *string {
-	if a == nil {
-		return nil
-	}
-	return a.DollarSchema
 }
 
 func (a *AssetRef) GetAutonomousSystem() *int {

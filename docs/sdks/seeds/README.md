@@ -89,7 +89,7 @@ func main() {
         censysassetgraphsdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
-    res, err := s.Seeds.CreateSeed(ctx, "79809a54-ce65-490e-9c9c-0362c7b3a4f8", components.AssetRefInput{})
+    res, err := s.Seeds.CreateSeed(ctx, "79809a54-ce65-490e-9c9c-0362c7b3a4f8", components.AssetRef{})
     if err != nil {
         log.Fatal(err)
     }
@@ -101,12 +101,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
-| `graphID`                                                            | `string`                                                             | :heavy_check_mark:                                                   | Asset graph ID                                                       |
-| `body`                                                               | [components.AssetRefInput](../../models/components/assetrefinput.md) | :heavy_check_mark:                                                   | N/A                                                                  |
-| `opts`                                                               | [][operations.Option](../../models/operations/option.md)             | :heavy_minus_sign:                                                   | The options for this request.                                        |
+| Parameter                                                  | Type                                                       | Required                                                   | Description                                                |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| `ctx`                                                      | [context.Context](https://pkg.go.dev/context#Context)      | :heavy_check_mark:                                         | The context to use for the request.                        |
+| `graphID`                                                  | `string`                                                   | :heavy_check_mark:                                         | Asset graph ID                                             |
+| `body`                                                     | [components.AssetRef](../../models/components/assetref.md) | :heavy_check_mark:                                         | N/A                                                        |
+| `opts`                                                     | [][operations.Option](../../models/operations/option.md)   | :heavy_minus_sign:                                         | The options for this request.                              |
 
 ### Response
 

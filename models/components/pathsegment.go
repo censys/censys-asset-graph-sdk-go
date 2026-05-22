@@ -3,14 +3,14 @@
 package components
 
 type PathSegment struct {
-	End          AssetRef         `json:"end"`
+	End          SegmentVertex    `json:"end"`
 	Relationship PathRelationship `json:"relationship"`
-	Start        AssetRef         `json:"start"`
+	Start        SegmentVertex    `json:"start"`
 }
 
-func (p *PathSegment) GetEnd() AssetRef {
+func (p *PathSegment) GetEnd() SegmentVertex {
 	if p == nil {
-		return AssetRef{}
+		return SegmentVertex{}
 	}
 	return p.End
 }
@@ -22,9 +22,9 @@ func (p *PathSegment) GetRelationship() PathRelationship {
 	return p.Relationship
 }
 
-func (p *PathSegment) GetStart() AssetRef {
+func (p *PathSegment) GetStart() SegmentVertex {
 	if p == nil {
-		return AssetRef{}
+		return SegmentVertex{}
 	}
 	return p.Start
 }

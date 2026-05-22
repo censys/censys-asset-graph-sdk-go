@@ -276,7 +276,7 @@ func (s *ExcludedAssets) ListExcludedAssets(ctx context.Context, graphID string,
 // Exclude an asset from an asset graph. Excluded assets will not appear in the graph and will not be used to discover additional assets.
 //
 // Modifications to excluded assets take effect during the next execution of the graph.
-func (s *ExcludedAssets) CreateExcludedAsset(ctx context.Context, graphID string, body components.AssetRefInput, opts ...operations.Option) (*operations.CreateExcludedAssetResponse, error) {
+func (s *ExcludedAssets) CreateExcludedAsset(ctx context.Context, graphID string, body components.AssetRef, opts ...operations.Option) (*operations.CreateExcludedAssetResponse, error) {
 	request := operations.CreateExcludedAssetRequest{
 		GraphID: graphID,
 		Body:    body,

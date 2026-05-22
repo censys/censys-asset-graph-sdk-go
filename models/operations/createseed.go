@@ -19,8 +19,8 @@ func (c *CreateSeedGlobals) GetXOrganizationID() *string {
 
 type CreateSeedRequest struct {
 	// Asset graph ID
-	GraphID string                   `pathParam:"style=simple,explode=false,name=graph_id"`
-	Body    components.AssetRefInput `request:"mediaType=application/json"`
+	GraphID string              `pathParam:"style=simple,explode=false,name=graph_id"`
+	Body    components.AssetRef `request:"mediaType=application/json"`
 }
 
 func (c *CreateSeedRequest) GetGraphID() string {
@@ -30,9 +30,9 @@ func (c *CreateSeedRequest) GetGraphID() string {
 	return c.GraphID
 }
 
-func (c *CreateSeedRequest) GetBody() components.AssetRefInput {
+func (c *CreateSeedRequest) GetBody() components.AssetRef {
 	if c == nil {
-		return components.AssetRefInput{}
+		return components.AssetRef{}
 	}
 	return c.Body
 }

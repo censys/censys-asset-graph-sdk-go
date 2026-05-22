@@ -1,4 +1,4 @@
-# AssetRefInput
+# SegmentVertex
 
 
 ## Fields
@@ -10,6 +10,7 @@
 | `Certificate`                                                                         | `*string`                                                                             | :heavy_minus_sign:                                                                    | SHA-256 fingerprint of a certificate (hex-encoded)                                    |
 | `Domain`                                                                              | `*string`                                                                             | :heavy_minus_sign:                                                                    | Domain name                                                                           |
 | `Host`                                                                                | `*string`                                                                             | :heavy_minus_sign:                                                                    | IP address of a host                                                                  |
+| `ID`                                                                                  | `string`                                                                              | :heavy_check_mark:                                                                    | Asset id, matching the id on the asset returned by the get-assets endpoint            |
 | `Netblock`                                                                            | `*string`                                                                             | :heavy_minus_sign:                                                                    | CIDR notation (e.g. 192.168.0.0/24)                                                   |
 | `RegistrantEmail`                                                                     | `*string`                                                                             | :heavy_minus_sign:                                                                    | Registrant email address                                                              |
 | `RegistrantOrganization`                                                              | `*string`                                                                             | :heavy_minus_sign:                                                                    | Registrant organization name                                                          |

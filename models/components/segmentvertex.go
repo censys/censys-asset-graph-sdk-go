@@ -2,7 +2,7 @@
 
 package components
 
-type AssetRefInput struct {
+type SegmentVertex struct {
 	// Autonomous system number (ASN)
 	AutonomousSystem *int `json:"autonomous_system,omitempty"`
 	// Organization name
@@ -13,6 +13,8 @@ type AssetRefInput struct {
 	Domain *string `json:"domain,omitempty"`
 	// IP address of a host
 	Host *string `json:"host,omitempty"`
+	// Asset id, matching the id on the asset returned by the get-assets endpoint
+	ID string `json:"id"`
 	// CIDR notation (e.g. 192.168.0.0/24)
 	Netblock *string `json:"netblock,omitempty"`
 	// Registrant email address
@@ -22,65 +24,72 @@ type AssetRefInput struct {
 	WebProperty            *WebPropertyIdentifier `json:"web_property,omitempty"`
 }
 
-func (a *AssetRefInput) GetAutonomousSystem() *int {
-	if a == nil {
+func (s *SegmentVertex) GetAutonomousSystem() *int {
+	if s == nil {
 		return nil
 	}
-	return a.AutonomousSystem
+	return s.AutonomousSystem
 }
 
-func (a *AssetRefInput) GetBusinessOrganization() *string {
-	if a == nil {
+func (s *SegmentVertex) GetBusinessOrganization() *string {
+	if s == nil {
 		return nil
 	}
-	return a.BusinessOrganization
+	return s.BusinessOrganization
 }
 
-func (a *AssetRefInput) GetCertificate() *string {
-	if a == nil {
+func (s *SegmentVertex) GetCertificate() *string {
+	if s == nil {
 		return nil
 	}
-	return a.Certificate
+	return s.Certificate
 }
 
-func (a *AssetRefInput) GetDomain() *string {
-	if a == nil {
+func (s *SegmentVertex) GetDomain() *string {
+	if s == nil {
 		return nil
 	}
-	return a.Domain
+	return s.Domain
 }
 
-func (a *AssetRefInput) GetHost() *string {
-	if a == nil {
+func (s *SegmentVertex) GetHost() *string {
+	if s == nil {
 		return nil
 	}
-	return a.Host
+	return s.Host
 }
 
-func (a *AssetRefInput) GetNetblock() *string {
-	if a == nil {
-		return nil
+func (s *SegmentVertex) GetID() string {
+	if s == nil {
+		return ""
 	}
-	return a.Netblock
+	return s.ID
 }
 
-func (a *AssetRefInput) GetRegistrantEmail() *string {
-	if a == nil {
+func (s *SegmentVertex) GetNetblock() *string {
+	if s == nil {
 		return nil
 	}
-	return a.RegistrantEmail
+	return s.Netblock
 }
 
-func (a *AssetRefInput) GetRegistrantOrganization() *string {
-	if a == nil {
+func (s *SegmentVertex) GetRegistrantEmail() *string {
+	if s == nil {
 		return nil
 	}
-	return a.RegistrantOrganization
+	return s.RegistrantEmail
 }
 
-func (a *AssetRefInput) GetWebProperty() *WebPropertyIdentifier {
-	if a == nil {
+func (s *SegmentVertex) GetRegistrantOrganization() *string {
+	if s == nil {
 		return nil
 	}
-	return a.WebProperty
+	return s.RegistrantOrganization
+}
+
+func (s *SegmentVertex) GetWebProperty() *WebPropertyIdentifier {
+	if s == nil {
+		return nil
+	}
+	return s.WebProperty
 }

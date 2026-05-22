@@ -276,7 +276,7 @@ func (s *Seeds) ListSeeds(ctx context.Context, graphID string, pageToken *string
 // Add a seed to an asset graph. Seeds are persistent starting points used to discover additional assets. Supported seed types include IP addresses, domains, CIDRs, ASNs, certificates, and web properties.
 //
 // Modifications to seeds take effect during the next execution of the graph.
-func (s *Seeds) CreateSeed(ctx context.Context, graphID string, body components.AssetRefInput, opts ...operations.Option) (*operations.CreateSeedResponse, error) {
+func (s *Seeds) CreateSeed(ctx context.Context, graphID string, body components.AssetRef, opts ...operations.Option) (*operations.CreateSeedResponse, error) {
 	request := operations.CreateSeedRequest{
 		GraphID: graphID,
 		Body:    body,
