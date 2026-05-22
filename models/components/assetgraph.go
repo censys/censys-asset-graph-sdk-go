@@ -2,6 +2,29 @@
 
 package components
 
+// StatusEnum - Lifecycle status of the asset graph
+type StatusEnum string
+
+const (
+	StatusEnumActive   StatusEnum = "ACTIVE"
+	StatusEnumDeleting StatusEnum = "DELETING"
+)
+
+func (e StatusEnum) ToPointer() *StatusEnum {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *StatusEnum) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "ACTIVE", "DELETING":
+			return true
+		}
+	}
+	return false
+}
+
 type AssetGraph struct {
 	// A URL to the JSON Schema for this object.
 	DollarSchema    *string         `json:"$schema,omitempty"`
@@ -14,6 +37,8 @@ type AssetGraph struct {
 	ID string `json:"id"`
 	// User-defined name
 	Name string `json:"name"`
+	// Lifecycle status of the asset graph
+	Status StatusEnum `json:"status"`
 	// RFC3339 last-update timestamp
 	UpdateTime string `json:"update_time"`
 }
@@ -58,6 +83,13 @@ func (a *AssetGraph) GetName() string {
 		return ""
 	}
 	return a.Name
+}
+
+func (a *AssetGraph) GetStatus() StatusEnum {
+	if a == nil {
+		return StatusEnum("")
+	}
+	return a.Status
 }
 
 func (a *AssetGraph) GetUpdateTime() string {
