@@ -15,6 +15,8 @@ type AssetRef struct {
 	Domain *string `json:"domain,omitempty"`
 	// IP address of a host
 	Host *string `json:"host,omitempty"`
+	// Asset id, matching the id returned by the get-asset endpoint. Populated on responses; ignored on input.
+	ID *string `json:"id,omitempty"`
 	// CIDR notation (e.g. 192.168.0.0/24)
 	Netblock *string `json:"netblock,omitempty"`
 	// Registrant email address
@@ -64,6 +66,13 @@ func (a *AssetRef) GetHost() *string {
 		return nil
 	}
 	return a.Host
+}
+
+func (a *AssetRef) GetID() *string {
+	if a == nil {
+		return nil
+	}
+	return a.ID
 }
 
 func (a *AssetRef) GetNetblock() *string {
