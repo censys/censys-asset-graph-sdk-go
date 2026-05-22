@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 65b8b64d-c37c-438a-8018-9afec4763321
 management:
-  docChecksum: 5f30064a93ff579a0deabe26cefe5c67
-  docVersion: 1.0.8
+  docChecksum: 14fb66c27980d627bef0e85c1c607f76
+  docVersion: 1.0.10
   speakeasyVersion: 1.761.5
   generationVersion: 2.879.13
-  releaseVersion: 0.3.1
-  configChecksum: df8571188303a6f248ee75d02cd4708c
+  releaseVersion: 0.3.2
+  configChecksum: cf428b633ac8d337fdda9b7d86617c09
   repoURL: https://github.com/censys/censys-asset-graph-sdk-go.git
   installationURL: https://github.com/censys/censys-asset-graph-sdk-go
 persistentEdits:
@@ -45,7 +45,7 @@ trackedFiles:
     pristine_git_object: 2a7f370c641012ecbe83dfb8d622316948bc80fb
   assetgraphs.go:
     id: 73eedcc93666
-    last_write_checksum: sha1:81e5ba115917b92dd92e83e01bbeef1ef5b6b450
+    last_write_checksum: sha1:4980706a81daf3c55c1ee05da3e29b7015c0ce6a
     pristine_git_object: f8e3dd5d9b6d915d8ae44c837d913b7adeeda5cd
   assets.go:
     id: b6b18a05c076
@@ -81,7 +81,7 @@ trackedFiles:
     pristine_git_object: a28678621f03049e6244ed06c38e182ee80ddfcd
   docs/models/components/assetgraph.md:
     id: 11d76b6ee574
-    last_write_checksum: sha1:eafcc6e4951776122a7715081e3c78d7326c65cf
+    last_write_checksum: sha1:baaf5c945935da670ced54d41443e19460902028
     pristine_git_object: 1c26f022cd7a0dc1f3d026466f292996c19d40b9
   docs/models/components/assetref.md:
     id: cba4f18e1faf
@@ -2017,6 +2017,8 @@ trackedFiles:
     id: e26b2fe7f53e
     last_write_checksum: sha1:7a07b74ec9fb23293ebf3afdaf08a8af20ec60e2
     pristine_git_object: 685c14128e8caafff2c13f1c81972b295a5159b2
+  docs/models/components/statusenum.md:
+    last_write_checksum: sha1:22cdf7ff29f9dd1f88f521e05ce57547b1e6cb61
   docs/models/components/steam.md:
     id: 41fff3851e46
     last_write_checksum: sha1:ae6ba14e2d8edc067e4d8c28f39ef43f5b3c0e6a
@@ -2437,7 +2439,7 @@ trackedFiles:
     pristine_git_object: 0b0306c7f4cec0eda15bed98ea55a724245065b7
   docs/sdks/assetgraphs/README.md:
     id: d43093aaac77
-    last_write_checksum: sha1:68da6411ff382185e641d2f2b67679d729b2ab90
+    last_write_checksum: sha1:9b12a67991b889803a8ccdacf6ec4abc8920d6a0
     pristine_git_object: b0e25ae24dbc47fa82a5675a8b750cfc2c9ca6e5
   docs/sdks/assets/README.md:
     id: c072a8a1f5c5
@@ -2569,7 +2571,7 @@ trackedFiles:
     pristine_git_object: 32a1826597a4a6a2911aa0f08000b36cf123da74
   models/components/assetgraph.go:
     id: 2762f26de46b
-    last_write_checksum: sha1:6b92c8d2342717665f8b2784f6167bec301533d4
+    last_write_checksum: sha1:29974be0a32df31510daf149142d2220553b02e8
     pristine_git_object: 40ba5e47c37e51d517c3f132948d159f95c9c34c
   models/components/assetref.go:
     id: fb561c77b7cd
@@ -4645,7 +4647,7 @@ trackedFiles:
     pristine_git_object: b00dae436f9eaa8d03f5246b373052e6f5da3563
   sdk.go:
     id: 8db9b9536b0a
-    last_write_checksum: sha1:c21ebf6f3e68f404fbbf37bd8b1aad2e5208f364
+    last_write_checksum: sha1:57b6b388d8e338a72ae354e078e1b5c41fd466eb
     pristine_git_object: 3af36e9b8e56af57e6b701dbd746c30d308c2243
   seeds.go:
     id: 4cb79c731994
@@ -4879,7 +4881,7 @@ examples:
         application/json: {"name": "<value>"}
       responses:
         "200":
-          application/json: {"$schema": "https://graph.data.censys.io/schemas/AssetGraph.json", "active_execution": {"$schema": "https://graph.data.censys.io/schemas/GraphExecution.json", "create_time": "<value>", "id": "<id>", "status": "<value>", "update_time": "<value>"}, "create_time": "<value>", "id": "<id>", "name": "<value>", "update_time": "<value>"}
+          application/json: {"$schema": "https://graph.data.censys.io/schemas/AssetGraph.json", "active_execution": {"$schema": "https://graph.data.censys.io/schemas/GraphExecution.json", "create_time": "<value>", "id": "<id>", "status": "<value>", "update_time": "<value>"}, "create_time": "<value>", "id": "<id>", "name": "<value>", "status": "ACTIVE", "update_time": "<value>"}
         default:
           application/problem+json: {"$schema": "https://graph.data.censys.io/schemas/ErrorModel.json", "detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   delete-asset-graph:
@@ -4901,7 +4903,7 @@ examples:
           X-Organization-ID: "<id>"
       responses:
         "200":
-          application/json: {"$schema": "https://graph.data.censys.io/schemas/AssetGraph.json", "active_execution": {"$schema": "https://graph.data.censys.io/schemas/GraphExecution.json", "create_time": "<value>", "id": "<id>", "status": "<value>", "update_time": "<value>"}, "create_time": "<value>", "id": "<id>", "name": "<value>", "update_time": "<value>"}
+          application/json: {"$schema": "https://graph.data.censys.io/schemas/AssetGraph.json", "active_execution": {"$schema": "https://graph.data.censys.io/schemas/GraphExecution.json", "create_time": "<value>", "id": "<id>", "status": "<value>", "update_time": "<value>"}, "create_time": "<value>", "id": "<id>", "name": "<value>", "status": "DELETING", "update_time": "<value>"}
         default:
           application/problem+json: {"$schema": "https://graph.data.censys.io/schemas/ErrorModel.json", "detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   list-excluded-assets:

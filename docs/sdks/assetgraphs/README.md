@@ -117,7 +117,7 @@ func main() {
 
 ## DeleteAssetGraph
 
-Permanently delete an asset graph and all of its associated data, including seeds, excluded assets, and executions.
+Permanently delete an asset graph and all of its associated data, including seeds, excluded assets, and executions. Graph deletion is an asynchronous operation.
 
 ### Example Usage
 
