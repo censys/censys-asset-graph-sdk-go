@@ -21,4 +21,5 @@ custom := components.StatusEnum("custom_value")
 | Name                 | Value                |
 | -------------------- | -------------------- |
 | `StatusEnumActive`   | ACTIVE               |
+| `StatusEnumPaused`   | PAUSED               |
 | `StatusEnumDeleting` | DELETING             |

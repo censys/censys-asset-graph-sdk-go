@@ -11,7 +11,9 @@ type AssetResponse struct {
 	Domain         *DomainResponse `json:"domain,omitempty"`
 	Host           *Host           `json:"host,omitempty"`
 	// Unique identifier of the asset
-	ID          string       `json:"id"`
+	ID string `json:"id"`
+	// Whether the asset is a seed of the graph. A seed may still have discovery paths if it was also discovered through other means.
+	Seed        bool         `json:"seed"`
 	WebProperty *WebProperty `json:"web_property,omitempty"`
 }
 
@@ -55,6 +57,13 @@ func (a *AssetResponse) GetID() string {
 		return ""
 	}
 	return a.ID
+}
+
+func (a *AssetResponse) GetSeed() bool {
+	if a == nil {
+		return false
+	}
+	return a.Seed
 }
 
 func (a *AssetResponse) GetWebProperty() *WebProperty {
