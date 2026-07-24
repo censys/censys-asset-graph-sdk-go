@@ -7,6 +7,7 @@ type StatusEnum string
 
 const (
 	StatusEnumActive   StatusEnum = "ACTIVE"
+	StatusEnumPaused   StatusEnum = "PAUSED"
 	StatusEnumDeleting StatusEnum = "DELETING"
 )
 
@@ -18,7 +19,7 @@ func (e StatusEnum) ToPointer() *StatusEnum {
 func (e *StatusEnum) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "ACTIVE", "DELETING":
+		case "ACTIVE", "PAUSED", "DELETING":
 			return true
 		}
 	}

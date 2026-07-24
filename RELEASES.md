@@ -59,3 +59,13 @@ Based on:
 - [go v0.3.3] .
 ### Releases
 - [Go v0.3.3] https://github.com/censys/censys-asset-graph-sdk-go/releases/tag/v0.3.3 - .
+
+## 2026-07-24 17:46:15
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.791.0 (2.924.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.3.4] .
+### Releases
+- [Go v0.3.4] https://github.com/censys/censys-asset-graph-sdk-go/releases/tag/v0.3.4 - .

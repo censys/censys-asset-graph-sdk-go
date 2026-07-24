@@ -5,6 +5,8 @@ package components
 type PathRelationship struct {
 	// Edge type (e.g. FORWARD_DNS)
 	Type string `json:"type"`
+	// Edge weight from 0 to 1.0; lower means higher-confidence discovery
+	Weight *float64 `json:"weight,omitempty"`
 }
 
 func (p *PathRelationship) GetType() string {
@@ -12,4 +14,11 @@ func (p *PathRelationship) GetType() string {
 		return ""
 	}
 	return p.Type
+}
+
+func (p *PathRelationship) GetWeight() *float64 {
+	if p == nil {
+		return nil
+	}
+	return p.Weight
 }

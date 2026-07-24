@@ -1,12 +1,12 @@
-speakeasyVersion: 1.761.5
+speakeasyVersion: 1.791.0
 sources:
     asset-graph-source:
         sourceNamespace: asset-graph-source
-        sourceRevisionDigest: sha256:3fec5cd463e25cbe520f6fe368c51530ba0323b0a356397b505e19c268240a0b
-        sourceBlobDigest: sha256:82303474f8b1a1727c426258fd916606f21b66f097eb104da215e68696c5e013
+        sourceRevisionDigest: sha256:7c0606a63a6f0c358fbff318ba4b9a8f1c72e6c6f4adc7d285a24c0b9a94bdae
+        sourceBlobDigest: sha256:8e4861f35b404861678244ef549bff52783c3dc119c12903dbafbfc6d52f5eff
         tags:
             - latest
-            - 1.0.12
+            - 1.0.15
     petstore-oas:
         sourceNamespace: petstore-oas
         sourceRevisionDigest: sha256:79b05b3c903377383b1ffff975c77201c984df00c5ebe24c3c0f20580776f8e1
@@ -18,10 +18,10 @@ targets:
     censys-asset-graph-sdk-go:
         source: asset-graph-source
         sourceNamespace: asset-graph-source
-        sourceRevisionDigest: sha256:3fec5cd463e25cbe520f6fe368c51530ba0323b0a356397b505e19c268240a0b
-        sourceBlobDigest: sha256:82303474f8b1a1727c426258fd916606f21b66f097eb104da215e68696c5e013
+        sourceRevisionDigest: sha256:7c0606a63a6f0c358fbff318ba4b9a8f1c72e6c6f4adc7d285a24c0b9a94bdae
+        sourceBlobDigest: sha256:8e4861f35b404861678244ef549bff52783c3dc119c12903dbafbfc6d52f5eff
         codeSamplesNamespace: asset-graph-source-go-code-samples
-        codeSamplesRevisionDigest: sha256:36f8818e201a0e4861b73913654d6113416456c813ef5e36d8203e9644b8f0da
+        codeSamplesRevisionDigest: sha256:520d8bd08c61dfdf9eda990b47799784b8d1bf047e18598797d5f00cbc6ee5c6
     petstore:
         source: petstore-oas
         sourceNamespace: petstore-oas
