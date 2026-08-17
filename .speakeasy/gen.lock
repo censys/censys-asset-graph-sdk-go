@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 65b8b64d-c37c-438a-8018-9afec4763321
 management:
-  docChecksum: 4d8b76a1f8fea18713cd7c679e90dded
-  docVersion: 1.0.15
-  speakeasyVersion: 1.791.0
-  generationVersion: 2.924.0
-  releaseVersion: 0.3.4
-  configChecksum: 743f9f9db49d70f0871fd9343cb02b36
+  docChecksum: 7a114df637106fae6913ef3b68a4442f
+  docVersion: 1.0.16
+  speakeasyVersion: 1.794.1
+  generationVersion: 2.931.0
+  releaseVersion: 0.3.5
+  configChecksum: 22691657736571d3e0e2d4f1499c0364
   repoURL: https://github.com/censys/censys-asset-graph-sdk-go.git
   installationURL: https://github.com/censys/censys-asset-graph-sdk-go
 persistentEdits:
@@ -18,7 +18,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.14
-    core: 3.13.47
+    core: 3.13.48
     defaultEnabledRetries: 0.2.0
     envVarSecurityUsage: 0.3.2
     flattening: 2.81.2

@@ -24,8 +24,10 @@ type Seed struct {
 	// Registrant email address
 	RegistrantEmail *string `json:"registrant_email,omitempty"`
 	// Registrant organization name
-	RegistrantOrganization *string                `json:"registrant_organization,omitempty"`
-	WebProperty            *WebPropertyIdentifier `json:"web_property,omitempty"`
+	RegistrantOrganization *string `json:"registrant_organization,omitempty"`
+	// Twitter handle
+	TwitterHandle *string                `json:"twitter_handle,omitempty"`
+	WebProperty   *WebPropertyIdentifier `json:"web_property,omitempty"`
 }
 
 func (s *Seed) GetDollarSchema() *string {
@@ -103,6 +105,13 @@ func (s *Seed) GetRegistrantOrganization() *string {
 		return nil
 	}
 	return s.RegistrantOrganization
+}
+
+func (s *Seed) GetTwitterHandle() *string {
+	if s == nil {
+		return nil
+	}
+	return s.TwitterHandle
 }
 
 func (s *Seed) GetWebProperty() *WebPropertyIdentifier {
