@@ -20,8 +20,10 @@ type AssetRefInput struct {
 	// Registrant email address
 	RegistrantEmail *string `json:"registrant_email,omitempty"`
 	// Registrant organization name
-	RegistrantOrganization *string                `json:"registrant_organization,omitempty"`
-	WebProperty            *WebPropertyIdentifier `json:"web_property,omitempty"`
+	RegistrantOrganization *string `json:"registrant_organization,omitempty"`
+	// Twitter handle
+	TwitterHandle *string                `json:"twitter_handle,omitempty"`
+	WebProperty   *WebPropertyIdentifier `json:"web_property,omitempty"`
 }
 
 func (a *AssetRefInput) GetAutonomousSystem() *int {
@@ -85,6 +87,13 @@ func (a *AssetRefInput) GetRegistrantOrganization() *string {
 		return nil
 	}
 	return a.RegistrantOrganization
+}
+
+func (a *AssetRefInput) GetTwitterHandle() *string {
+	if a == nil {
+		return nil
+	}
+	return a.TwitterHandle
 }
 
 func (a *AssetRefInput) GetWebProperty() *WebPropertyIdentifier {

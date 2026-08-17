@@ -24,8 +24,10 @@ type ExcludedAsset struct {
 	// Registrant email address
 	RegistrantEmail *string `json:"registrant_email,omitempty"`
 	// Registrant organization name
-	RegistrantOrganization *string                `json:"registrant_organization,omitempty"`
-	WebProperty            *WebPropertyIdentifier `json:"web_property,omitempty"`
+	RegistrantOrganization *string `json:"registrant_organization,omitempty"`
+	// Twitter handle
+	TwitterHandle *string                `json:"twitter_handle,omitempty"`
+	WebProperty   *WebPropertyIdentifier `json:"web_property,omitempty"`
 }
 
 func (e *ExcludedAsset) GetDollarSchema() *string {
@@ -103,6 +105,13 @@ func (e *ExcludedAsset) GetRegistrantOrganization() *string {
 		return nil
 	}
 	return e.RegistrantOrganization
+}
+
+func (e *ExcludedAsset) GetTwitterHandle() *string {
+	if e == nil {
+		return nil
+	}
+	return e.TwitterHandle
 }
 
 func (e *ExcludedAsset) GetWebProperty() *WebPropertyIdentifier {
