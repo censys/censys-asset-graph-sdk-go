@@ -5,6 +5,8 @@ package components
 type CreateAssetGraphInputBody struct {
 	// Optional description
 	Description *string `json:"description,omitempty"`
+	// Exclude infrastructure this organization provisions for its own customers, such as customer subdomains of a SaaS zone or domains served by shared nameservers. Cannot be changed after creation.
+	ExcludeTenantInfrastructure *bool `json:"exclude_tenant_infrastructure,omitempty"`
 	// User-defined name for this asset graph
 	Name string `json:"name"`
 }
@@ -14,6 +16,13 @@ func (c *CreateAssetGraphInputBody) GetDescription() *string {
 		return nil
 	}
 	return c.Description
+}
+
+func (c *CreateAssetGraphInputBody) GetExcludeTenantInfrastructure() *bool {
+	if c == nil {
+		return nil
+	}
+	return c.ExcludeTenantInfrastructure
 }
 
 func (c *CreateAssetGraphInputBody) GetName() string {
