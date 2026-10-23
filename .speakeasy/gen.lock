@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 65b8b64d-c37c-438a-8018-9afec4763321
 management:
-  docChecksum: 7a114df637106fae6913ef3b68a4442f
-  docVersion: 1.0.16
-  speakeasyVersion: 1.794.1
-  generationVersion: 2.931.0
-  releaseVersion: 0.3.5
-  configChecksum: 22691657736571d3e0e2d4f1499c0364
+  docChecksum: badda55aafbd509d29826177a342ab5a
+  docVersion: 1.0.17
+  speakeasyVersion: 1.803.1
+  generationVersion: 2.950.2
+  releaseVersion: 0.4.0
+  configChecksum: 99455b33bee557f98140a3d6281d0064
   repoURL: https://github.com/censys/censys-asset-graph-sdk-go.git
   installationURL: https://github.com/censys/censys-asset-graph-sdk-go
 persistentEdits:
@@ -18,7 +18,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.14
-    core: 3.13.48
+    core: 3.16.2
     defaultEnabledRetries: 0.2.0
     envVarSecurityUsage: 0.3.2
     flattening: 2.81.2
@@ -26,14 +26,14 @@ features:
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.83.1
-    globals: 2.82.2
+    globals: 2.82.3
     hiddenGlobals: 0.1.0
     inputOutputModels: 2.83.0
     intellisenseMarkdownSupport: 0.1.0
-    nullables: 0.2.1
+    nullables: 0.2.2
     responseFormat: 0.1.2
-    retries: 2.84.3
-    sdkHooks: 0.3.0
+    retries: 2.84.6
+    sdkHooks: 0.3.1
 trackedFiles:
   .gitattributes:
     id: 24139dae6567
@@ -1903,6 +1903,7 @@ trackedFiles:
   internal/utils/utils.go:
     id: 1133b2a27019
     pristine_git_object: a614e37673d3ea81eabc6139236edfb22a15dc55
+  models/apierrors/responsevalidationerror.go: {}
   models/apierrors/sdkerror.go:
     id: 20c5928b27df
     pristine_git_object: decc859a7a5fff23acb5e2ad1ba487f23c83baa0
@@ -3715,7 +3716,7 @@ examples:
         application/json: {"name": "<value>"}
       responses:
         "200":
-          application/json: {"$schema": "https://graph.data.censys.io/schemas/AssetGraph.json", "active_execution": {"$schema": "https://graph.data.censys.io/schemas/GraphExecution.json", "create_time": "<value>", "id": "<id>", "status": "<value>", "update_time": "<value>"}, "create_time": "<value>", "id": "<id>", "name": "<value>", "status": "ACTIVE", "update_time": "<value>"}
+          application/json: {"$schema": "https://graph.data.censys.io/schemas/AssetGraph.json", "active_execution": {"$schema": "https://graph.data.censys.io/schemas/GraphExecution.json", "create_time": "<value>", "id": "<id>", "status": "<value>", "update_time": "<value>"}, "create_time": "<value>", "exclude_tenant_infrastructure": true, "id": "<id>", "name": "<value>", "status": "ACTIVE", "update_time": "<value>"}
         default:
           application/problem+json: {"$schema": "https://graph.data.censys.io/schemas/ErrorModel.json", "detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   delete-asset-graph:
@@ -3737,7 +3738,7 @@ examples:
           X-Organization-ID: "<id>"
       responses:
         "200":
-          application/json: {"$schema": "https://graph.data.censys.io/schemas/AssetGraph.json", "active_execution": {"$schema": "https://graph.data.censys.io/schemas/GraphExecution.json", "create_time": "<value>", "id": "<id>", "status": "<value>", "update_time": "<value>"}, "create_time": "<value>", "id": "<id>", "name": "<value>", "status": "DELETING", "update_time": "<value>"}
+          application/json: {"$schema": "https://graph.data.censys.io/schemas/AssetGraph.json", "active_execution": {"$schema": "https://graph.data.censys.io/schemas/GraphExecution.json", "create_time": "<value>", "id": "<id>", "status": "<value>", "update_time": "<value>"}, "create_time": "<value>", "exclude_tenant_infrastructure": false, "id": "<id>", "name": "<value>", "status": "DELETING", "update_time": "<value>"}
         default:
           application/problem+json: {"$schema": "https://graph.data.censys.io/schemas/ErrorModel.json", "detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   list-excluded-assets:

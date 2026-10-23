@@ -34,6 +34,8 @@ type AssetGraph struct {
 	CreateTime string `json:"create_time"`
 	// Optional description
 	Description *string `json:"description,omitempty"`
+	// Whether infrastructure this organization provisions for its own customers is excluded from discovery
+	ExcludeTenantInfrastructure bool `json:"exclude_tenant_infrastructure"`
 	// Unique identifier for the asset graph
 	ID string `json:"id"`
 	// User-defined name
@@ -70,6 +72,13 @@ func (a *AssetGraph) GetDescription() *string {
 		return nil
 	}
 	return a.Description
+}
+
+func (a *AssetGraph) GetExcludeTenantInfrastructure() bool {
+	if a == nil {
+		return false
+	}
+	return a.ExcludeTenantInfrastructure
 }
 
 func (a *AssetGraph) GetID() string {

@@ -1,7 +1,3 @@
 module github.com/censys/censys-asset-graph-sdk-go
 
-go 1.25.10
-
-require github.com/stretchr/testify v1.12.0
-
-require gopkg.in/yaml.v3 v3.0.1 // indirect
+go 1.26.8

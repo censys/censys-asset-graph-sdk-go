@@ -2,7 +2,7 @@
 
 package censysassetgraphsdkgo
 
-// Generated from OpenAPI doc version 1.0.16 and generator version 2.931.0
+// Generated from OpenAPI doc version 1.0.17 and generator version 2.950.2
 
 import (
 	"context"
@@ -176,11 +176,14 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
-		SDKVersion: "0.3.5",
+		SDKVersion: "0.4.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.3.5 2.931.0 1.0.16 github.com/censys/censys-asset-graph-sdk-go",
-			Globals:    globals.Globals{},
-			ServerList: ServerList,
+			UserAgent:         "speakeasy-sdk/go 0.4.0 2.950.2 1.0.17 github.com/censys/censys-asset-graph-sdk-go",
+			SDKVersion:        "0.4.0",
+			GenVersion:        "2.950.2",
+			OpenAPIDocVersion: "1.0.17",
+			Globals:           globals.Globals{},
+			ServerList:        ServerList,
 		},
 		hooks: hooks.New(),
 	}

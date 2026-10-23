@@ -274,10 +274,11 @@ func (s *AssetGraphs) ListAssetGraphs(ctx context.Context, pageToken *string, pa
 
 // CreateAssetGraph - Create an asset graph
 // Create a new asset graph. An asset graph provides comprehensive visibility into your Internet-facing assets. It is the parent resource for seeds, excluded assets, and executions.
-func (s *AssetGraphs) CreateAssetGraph(ctx context.Context, name string, description *string, opts ...operations.Option) (*operations.CreateAssetGraphResponse, error) {
+func (s *AssetGraphs) CreateAssetGraph(ctx context.Context, name string, description *string, excludeTenantInfrastructure *bool, opts ...operations.Option) (*operations.CreateAssetGraphResponse, error) {
 	request := components.CreateAssetGraphInputBody{
-		Description: description,
-		Name:        name,
+		Description:                 description,
+		ExcludeTenantInfrastructure: excludeTenantInfrastructure,
+		Name:                        name,
 	}
 
 	globals := operations.CreateAssetGraphGlobals{
